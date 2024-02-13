@@ -1,9 +1,10 @@
 import Navbar from "./components/Navbar/Navbar";
+import Landing from "./components/Homepage/Landing";
 function App() {
   return (
     <>
       <Navbar />
-      <h1 className="bg-pink-500 text-white">my portfolio </h1>
+      <Landing></Landing>
     </>
   );
 }
