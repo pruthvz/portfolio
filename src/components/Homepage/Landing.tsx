@@ -2,13 +2,21 @@ import React from "react";
 import { TypeAnimation } from "react-type-animation";
 
 const skills = [
-  { name: "python" },
-  { name: "javascript" },
-  { name: "django" },
-  { name: "tailwind" },
-  { name: "angular" },
-  { name: "html and css" },
-  { name: "lamo testing" },
+  { name: "Python" },
+  { name: "JavaScript" },
+  { name: "Node.JS" },
+  { name: "C#" },
+  { name: "C++" },
+  { name: "Next.JS" },
+  { name: "React.JS" },
+  { name: "Vite.JS" },
+  { name: "Django" },
+  { name: "TailwindCSS" },
+  { name: "HTML/CSS" },
+  { name: "Unity 2D/3D" },
+  { name: "MySQL" },
+  { name: "Git" },
+  { name: "GitHub" },
 ];
 
 function Landing() {
@@ -50,7 +58,7 @@ function Landing() {
               excepturi exercitationem quasi. In deleniti eaque aut repudiandae
               et a id nisi.
             </p>
-            <button className="btn btn-primary">Say Hi</button>
+            <button className="btn btn-primary text-white">Say Hi</button>
           </div>
         </div>
       </div>
@@ -96,15 +104,17 @@ function Landing() {
       </section>
       <div class=" min-h-screen bg-base-200 flex items-center justify-center">
         <div class="text-center">
-          <div class="max-w-md">
-            <h1 class="text-5xl font-bold">Skills</h1>
+          <div>
+            <h2 className="mb-4 text-6xl tracking-tight font-extrabold text-gray-900 dark:text-white">
+              Skills
+            </h2>
           </div>
-          <div class="grid grid-rows-4 grid-flow-col gap-4  ">
+          <div class="grid grid-rows-4 grid-flow-col gap-4 p-20 rounded-2xl ">
             {skills.map(function (lang, index) {
               return (
                 <>
                   <div
-                    className="btn bg-purple-500 text-white btn-wide"
+                    className="p-4 bg-gray-700 hover:bg-white hover:text-black hover:cursor-pointer rounded-lg  hover:scale-110 transition-all text-white btn-wide mb-4 ml-4"
                     data-aos="fade-up"
                     data-aos-anchor-placement="top-bottom"
                     data-aos-delay="50"
@@ -117,6 +127,180 @@ function Landing() {
           </div>
         </div>
       </div>
+
+      <section className="min-h-screen bg-base-100 ">
+        <div className="container px-5 py-24 mx-auto" data-aos="fade-up">
+          <div className="flex flex-wrap w-full mb-20">
+            <div className="lg:w-1/2 w-full mb-6 lg:mb-0">
+              <h2 className="mb-4 text-5xl tracking-tight font-extrabold text-gray-900 dark:text-white">
+                My Personal Projects
+              </h2>
+              <div className="h-1 w-20 bg-primary rounded"></div>
+            </div>
+          </div>
+          {/* start of cards */}
+          <div className="flex flex-wrap -m-4">
+            <div className="xl:w-1/4  md:w-1/2 p-4">
+              <div className="bg-base-300 bg-opacity-100 p-6 rounded-lg transform hover:scale-105 transition duration-300 cursor-auto">
+                <img
+                  className="h-44  rounded w-full object-cover object-center mb-6"
+                  src="/static/projectImg/spatepate.png"
+                  alt="content"
+                />
+                <h3 className="tracking-widest text-primary text-xs font-medium title-font mt-3">
+                  Programming Tutorials
+                </h3>
+                <h2 className="text-lg text-gray-200 font-medium title-font mb-4">
+                  spatepate
+                </h2>
+                <p className="leading-relaxed text-base text-gray-400">
+                  I created spatepate for developers who are looking for videos
+                  on how to code. I included the most of programming languages
+                  and gathered beginner friendly and advanced tutorials.
+                </p>
+                {/* hashtags if they look bad delete it */}
+
+                {/* hashtags */}
+                {/* CODE ICONS */}
+                <div className="row pt-2 text-accent text-lg ">
+                  <a
+                    href="https://pruthvz.github.io/spatepate/"
+                    target="_blank"
+                  >
+                    <i className="fas fa-globe transform transition duration-300 hover:text-purple-200 hover:scale-110"></i>
+                  </a>
+                  <a
+                    href="https://github.com/pruthvz/spatepate"
+                    target="_blank"
+                  >
+                    <i className="fas fa-code pl-2 transform transition duration-300 hover:text-purple-200 hover:scale-110"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div className="xl:w-1/4 md:w-1/2 p-4">
+              <div className="bg-base-300 bg-opacity-100 p-6 rounded-lg transform hover:scale-105 transition duration-300 cursor-auto ">
+                <img
+                  className=" h-44 rounded w-full object-cover object-center mb-6"
+                  src="/static/projectImg/oopsdev.png"
+                  alt="content"
+                />
+                <h3 className="tracking-widest text-primary text-xs font-medium title-font mt-3">
+                  Useful Developer Resources
+                </h3>
+                <h2 className="text-lg text-gray-200 font-medium title-font mb-4">
+                  ooopsDev.com
+                </h2>
+                <p className="leading-relaxed text-base text-gray-400">
+                  ooopsDev.com began as a joke, but I realized that this kind of
+                  website would be helpful to more than just me. The website's
+                  contains front-end and back-end resources.
+                </p>
+                {/* hashtags if they look bad delete it */}
+
+                {/* hashtags */}
+                {/* CODE ICONS */}
+                <div className="row pt-2 text-accent text-lg">
+                  <a href="https://ooopsdev.com/#/" target="_blank">
+                    <i className="fas fa-globe transform transition duration-300 hover:text-purple-200 hover:scale-110"></i>
+                  </a>
+                  <a
+                    href="https://github.com/pruthvz/project-atlas"
+                    target="_blank"
+                  >
+                    <i className="fas fa-code pl-2 transform transition duration-300 hover:text-purple-200 hover:scale-110"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div className="xl:w-1/4 md:w-1/2 p-4">
+              <div className="bg-base-300 bg-opacity-100 p-6 rounded-lg transform hover:scale-105 transition duration-300 cursor-auto">
+                <img
+                  className="h-44 rounded w-full object-cover object-center mb-6"
+                  src="/static/projectImg/diutravels.png"
+                  alt="content"
+                />
+                <h3 className="tracking-widest text-primary text-xs font-medium title-font mt-3">
+                  Travel Website
+                </h3>
+                <h2 className="text-lg text-gray-200 font-medium title-font mb-4">
+                  Diu Travels
+                </h2>
+                <p className="leading-relaxed text-base text-gray-400 ">
+                  My first project for a client was Diu Travels. It's a static
+                  travel website that displays all of the destinations that my
+                  customer requested. For the website, I utilized Material
+                  Design Bootstrap.
+                </p>
+                {/* hashtags if they look bad delete it */}
+
+                {/* hashtags */}
+                {/* CODE ICONS */}
+                <div className="row pt-2 text-accent text-lg ">
+                  <a href="https://diutravels.com/" target="_blank">
+                    <i className="fas fa-globe transform transition duration-300 hover:text-purple-200 hover:scale-110"></i>
+                  </a>
+                  <a
+                    href="https://github.com/pruthvz/updatedTravelsite"
+                    target="_blank"
+                  >
+                    <i className="fas fa-code pl-2 transform transition duration-300 hover:text-purple-200 hover:scale-110"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div className="xl:w-1/4 md:w-1/2 p-4">
+              <div className="bg-base-300 bg-opacity-100 p-6 rounded-lg transform hover:scale-105 transition duration-300 cursor-auto">
+                <img
+                  className="h-48 rounded w-full mb-6"
+                  src="/static/projectImg/weee.png"
+                  alt="content"
+                  height={600}
+                  width={1000}
+                />
+                <h3 className="tracking-widest text-primary text-xs font-medium title-font mt-3">
+                  Next.js Project
+                </h3>
+                <h2 className="text-lg text-gray-200 font-medium title-font mb-4">
+                  Project Weee
+                </h2>
+                <p className="leading-relaxed text-base text-gray-400">
+                  This was a fun experiment that I developed to learn the
+                  fundamentals of Next.js before starting a new project with
+                  Next.js.
+                </p>
+                {/* hashtags if they look bad delete it */}
+
+                {/* hashtags */}
+
+                {/* CODE ICONS */}
+                <div className="row pt-2 text-accent text-lg ">
+                  <a href="https://project-weee.vercel.app/" target="_blank">
+                    <i className="fas fa-globe transform transition duration-300 hover:text-purple-200 hover:scale-110"></i>
+                  </a>
+                  <a
+                    href="https://github.com/pruthvz/project-weee"
+                    target="_blank"
+                  >
+                    <i className="fas fa-code pl-2 transform transition duration-300 hover:text-purple-200 hover:scale-110"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            {/* end of cards */}
+          </div>
+        </div>
+        <div className="flex justify-center mt-1">
+          <a
+            className="px-8 py-2 text-lg font-medium text-white transition-colors duration-300 transform border border-white rounded hover:bg-primary hover:border-transparent "
+            href="/projects"
+            data-aos="fade-right"
+            data-aos-anchor-placement="top-bottom"
+          >
+            View all Projects <i class="fas fa-angle-right"></i>
+          </a>
+        </div>
+      </section>
     </div>
   );
 }

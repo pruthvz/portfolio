@@ -71,6 +71,12 @@ function Navbar() {
           </ul>
         </div>
         <div className="navbar-end">
+          <a className="p-2">
+            <i class="fa-brands fa-twitter"></i>
+          </a>
+          <a className="p-2">
+            <i class="fa-brands fa-github"></i>
+          </a>
           <a className="btn">Contact me</a>
         </div>
       </div>
