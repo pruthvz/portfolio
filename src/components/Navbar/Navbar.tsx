@@ -1,4 +1,4 @@
-import React from "react";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 function Navbar() {
   return (
@@ -27,7 +27,7 @@ function Navbar() {
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
-                <a>Home</a>
+                <Link to="/">Home</Link>
               </li>
               <li>
                 <a>Parent</a>
@@ -49,12 +49,17 @@ function Navbar() {
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
-            <li>
-              <a>Home</a>
+            <li class="p-1">
+              <Link to="/">Home</Link>
             </li>
-            <li>
+            <li class="p-1">
+              <Link to="/projects">Projects</Link>
+            </li>
+            {/* <li>
               <details>
-                <summary>Work</summary>
+                <summary>
+                  <Link to="projects">Projects</Link>
+                </summary>
                 <ul className="p-2">
                   <li>
                     <a>Submenu 1</a>
@@ -64,18 +69,18 @@ function Navbar() {
                   </li>
                 </ul>
               </details>
-            </li>
-            <li>
-              <a>About me</a>
+            </li> */}
+            <li class="p-1">
+              <Link to="about">About</Link>
             </li>
           </ul>
         </div>
         <div className="navbar-end">
           <a className="p-2">
-            <i class="fa-brands fa-twitter"></i>
+            <i class="fa-brands fa-twitter hidden md:flex"></i>
           </a>
           <a className="p-2">
-            <i class="fa-brands fa-github"></i>
+            <i class="fa-brands fa-github hidden md:flex"></i>
           </a>
           <a className="btn">Contact me</a>
         </div>

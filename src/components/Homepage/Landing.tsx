@@ -1,5 +1,6 @@
 import React from "react";
 import { TypeAnimation } from "react-type-animation";
+import Footer from "../Footer/Footer";
 
 const skills = [
   { name: "Python" },
@@ -23,23 +24,25 @@ function Landing() {
   return (
     <div>
       <div className="hero min-h-screen bg-base-200">
-        <div className="hero-content flex-col lg:flex-row-reverse p-2">
-          <div className="mockup-code w-2/3  mx-auto p-4 text-lg  shadow-lg h-96 ">
-            <pre data-prefix="$">
-              <code>npm i portfolio</code>
-            </pre>
-            <pre data-prefix=">" className="text-warning">
-              <code>installing...</code>
-            </pre>
-            <pre data-prefix=">" className="text-success">
-              <code>Name: "Pruthvi Mohanlal"</code>
-            </pre>
-            <pre data-prefix="" className="text-success">
-              <code>Age: "20"</code>
-            </pre>
+        <div className="hero-content flex-col lg:flex-row-reverse p-3">
+          <div className="w-full mx-auto lg:w-2/3">
+            <div className="mockup-code mx-auto p-4 text-lg shadow-lg h-96 ">
+              <pre data-prefix="$">
+                <code>npm i portfolio</code>
+              </pre>
+              <pre data-prefix=">" className="text-warning">
+                <code>installing...</code>
+              </pre>
+              <pre data-prefix=">" className="text-success">
+                <code>Name: "Pruthvi Mohanlal"</code>
+              </pre>
+              <pre data-prefix="" className="text-success">
+                <code>Age: "20"</code>
+              </pre>
+            </div>
           </div>
-          <div>
-            <h1 className="text-xl font-bold text-left mb-4 text-white">
+          <div className="text-center lg:text-left">
+            <h1 className="text-xl lg:text-3xl font-bold mb-4 text-white">
               <TypeAnimation
                 sequence={[
                   // Same substring at the start will only be typed out once, initially
@@ -50,7 +53,7 @@ function Landing() {
                 speed={50}
               />
             </h1>
-            <h1 className="text-9xl font-bold text-primary text-left">
+            <h1 className="text-6xl lg:text-9xl font-bold text-primary">
               Pruthvi Mohanlal.
             </h1>
             <p className="py-6 max-w-xl">
@@ -62,6 +65,8 @@ function Landing() {
           </div>
         </div>
       </div>
+      {/* responsiveness */}
+
       <section className="bg-white dark:bg-base-100">
         <div className="gap-8 items-center py-8 px-4 mx-auto max-w-screen-xl xl:gap-16 md:grid md:grid-cols-2 sm:py-16 lg:px-6">
           <img
@@ -102,28 +107,25 @@ function Landing() {
           </div>
         </div>
       </section>
-      <div class=" min-h-screen bg-base-200 flex items-center justify-center">
+      <div class="min-h-screen bg-base-200 flex items-center justify-center">
         <div class="text-center">
           <div>
-            <h2 className="mb-4 text-6xl tracking-tight font-extrabold text-gray-900 dark:text-white">
+            <h2 class="mb-4 text-3xl md:text-5xl tracking-tight font-extrabold text-gray-900 dark:text-white">
               Skills
             </h2>
           </div>
-          <div class="grid grid-rows-4 grid-flow-col gap-4 p-20 rounded-2xl ">
-            {skills.map(function (lang, index) {
-              return (
-                <>
-                  <div
-                    className="p-4 bg-gray-700 hover:bg-white hover:text-black hover:cursor-pointer rounded-lg  hover:scale-110 transition-all text-white btn-wide mb-4 ml-4"
-                    data-aos="fade-up"
-                    data-aos-anchor-placement="top-bottom"
-                    data-aos-delay="50"
-                  >
-                    {lang.name}
-                  </div>
-                </>
-              );
-            })}
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-4 p-6 md:p-20 rounded-2xl">
+            {skills.map((lang, index) => (
+              <div
+                key={index}
+                className="p-4 bg-gray-700 hover:bg-white hover:text-black hover:cursor-pointer rounded-lg hover:scale-110 transition-all text-white btn-wide mb-4 ml-4"
+                data-aos="fade-up"
+                data-aos-anchor-placement="top-bottom"
+                data-aos-delay="50"
+              >
+                {lang.name}
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -154,9 +156,9 @@ function Landing() {
                   spatepate
                 </h2>
                 <p className="leading-relaxed text-base text-gray-400">
-                  I created spatepate for developers who are looking for videos
-                  on how to code. I included the most of programming languages
-                  and gathered beginner friendly and advanced tutorials.
+                  I created Spatepate to provide developers with comprehensive
+                  coding tutorials covering a diverse range of programming
+                  languages, including beginner-friendly and advanced content.
                 </p>
                 {/* hashtags if they look bad delete it */}
 
@@ -181,7 +183,7 @@ function Landing() {
             <div className="xl:w-1/4 md:w-1/2 p-4">
               <div className="bg-base-300 bg-opacity-100 p-6 rounded-lg transform hover:scale-105 transition duration-300 cursor-auto ">
                 <img
-                  className=" h-44 rounded w-full object-cover object-center mb-6"
+                  className=" h-48 rounded w-full object-cover object-center mb-6"
                   src="/static/projectImg/oopsdev.png"
                   alt="content"
                 />
@@ -192,9 +194,10 @@ function Landing() {
                   ooopsDev.com
                 </h2>
                 <p className="leading-relaxed text-base text-gray-400">
-                  ooopsDev.com began as a joke, but I realized that this kind of
-                  website would be helpful to more than just me. The website's
-                  contains front-end and back-end resources.
+                  Initially a joke, ooopsDev.com evolved into a valuable
+                  resource upon recognizing its potential utility to a wider
+                  audience. It hosts a range of front-end and back-end
+                  resources.
                 </p>
                 {/* hashtags if they look bad delete it */}
 
@@ -216,7 +219,7 @@ function Landing() {
             <div className="xl:w-1/4 md:w-1/2 p-4">
               <div className="bg-base-300 bg-opacity-100 p-6 rounded-lg transform hover:scale-105 transition duration-300 cursor-auto">
                 <img
-                  className="h-44 rounded w-full object-cover object-center mb-6"
+                  className="h-52 rounded w-full object-cover object-center mb-6"
                   src="/static/projectImg/diutravels.png"
                   alt="content"
                 />
@@ -227,10 +230,9 @@ function Landing() {
                   Diu Travels
                 </h2>
                 <p className="leading-relaxed text-base text-gray-400 ">
-                  My first project for a client was Diu Travels. It's a static
-                  travel website that displays all of the destinations that my
-                  customer requested. For the website, I utilized Material
-                  Design Bootstrap.
+                  My debut client project, Diu Travels, involved creating a
+                  static travel website showcasing requested destinations,
+                  utilizing Material Design Bootstrap.
                 </p>
                 {/* hashtags if they look bad delete it */}
 
@@ -252,7 +254,7 @@ function Landing() {
             <div className="xl:w-1/4 md:w-1/2 p-4">
               <div className="bg-base-300 bg-opacity-100 p-6 rounded-lg transform hover:scale-105 transition duration-300 cursor-auto">
                 <img
-                  className="h-48 rounded w-full mb-6"
+                  className="h-52 rounded w-full mb-6"
                   src="/static/projectImg/weee.png"
                   alt="content"
                   height={600}
@@ -265,9 +267,9 @@ function Landing() {
                   Project Weee
                 </h2>
                 <p className="leading-relaxed text-base text-gray-400">
-                  This was a fun experiment that I developed to learn the
-                  fundamentals of Next.js before starting a new project with
-                  Next.js.
+                  I developed this experiment to grasp the fundamentals of
+                  Next.js before embarking on a new project with the same
+                  framework.
                 </p>
                 {/* hashtags if they look bad delete it */}
 
@@ -301,6 +303,7 @@ function Landing() {
           </a>
         </div>
       </section>
+      <Footer />
     </div>
   );
 }
