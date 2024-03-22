@@ -1,4 +1,5 @@
 import React from "react";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { TypeAnimation } from "react-type-animation";
 import Footer from "../Footer/Footer";
 
@@ -24,7 +25,10 @@ function Landing() {
   return (
     <div>
       <div className="hero min-h-screen bg-base-200">
-        <div className="hero-content flex-col lg:flex-row-reverse p-3">
+        <div
+          className="hero-content flex-col lg:flex-row-reverse p-3"
+          data-aos="fade-up"
+        >
           <div className="w-full mx-auto lg:w-2/3">
             <div className="mockup-code mx-auto p-4 text-lg shadow-lg h-96 ">
               <pre data-prefix="$">
@@ -68,7 +72,11 @@ function Landing() {
       {/* responsiveness */}
 
       <section className="bg-white dark:bg-base-100">
-        <div className="gap-8 items-center py-8 px-4 mx-auto max-w-screen-xl xl:gap-16 md:grid md:grid-cols-2 sm:py-16 lg:px-6">
+        <div
+          className="gap-8 items-center py-8 px-4 mx-auto max-w-screen-xl xl:gap-16 md:grid md:grid-cols-2 sm:py-16 lg:px-6"
+          data-aos="fade-up"
+          data-aos-offset="100"
+        >
           <img
             className="w-full dark:hidden"
             src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/cta/cta-dashboard-mockup.svg"
@@ -143,7 +151,10 @@ function Landing() {
           {/* start of cards */}
           <div className="flex flex-wrap -m-4">
             <div className="xl:w-1/4  md:w-1/2 p-4">
-              <div className="bg-base-300 bg-opacity-100 p-6 rounded-lg transform hover:scale-105 transition duration-300 cursor-auto">
+              <div
+                className="bg-base-300 bg-opacity-100 p-6 rounded-lg transform hover:scale-105 transition duration-300 cursor-auto"
+                data-aos="fade-up"
+              >
                 <img
                   className="h-44  rounded w-full object-cover object-center mb-6"
                   src="/static/projectImg/spatepate.png"
@@ -181,7 +192,10 @@ function Landing() {
               </div>
             </div>
             <div className="xl:w-1/4 md:w-1/2 p-4">
-              <div className="bg-base-300 bg-opacity-100 p-6 rounded-lg transform hover:scale-105 transition duration-300 cursor-auto ">
+              <div
+                className="bg-base-300 bg-opacity-100 p-6 rounded-lg transform hover:scale-105 transition duration-300 cursor-auto"
+                data-aos="fade-up"
+              >
                 <img
                   className=" h-48 rounded w-full object-cover object-center mb-6"
                   src="/static/projectImg/oopsdev.png"
@@ -217,7 +231,10 @@ function Landing() {
               </div>
             </div>
             <div className="xl:w-1/4 md:w-1/2 p-4">
-              <div className="bg-base-300 bg-opacity-100 p-6 rounded-lg transform hover:scale-105 transition duration-300 cursor-auto">
+              <div
+                className="bg-base-300 bg-opacity-100 p-6 rounded-lg transform hover:scale-105 transition duration-300 cursor-auto"
+                data-aos="fade-up"
+              >
                 <img
                   className="h-52 rounded w-full object-cover object-center mb-6"
                   src="/static/projectImg/diutravels.png"
@@ -252,7 +269,10 @@ function Landing() {
               </div>
             </div>
             <div className="xl:w-1/4 md:w-1/2 p-4">
-              <div className="bg-base-300 bg-opacity-100 p-6 rounded-lg transform hover:scale-105 transition duration-300 cursor-auto">
+              <div
+                className="bg-base-300 bg-opacity-100 p-6 rounded-lg transform hover:scale-105 transition duration-300 cursor-auto"
+                data-aos="fade-up"
+              >
                 <img
                   className="h-52 rounded w-full mb-6"
                   src="/static/projectImg/weee.png"
@@ -293,17 +313,17 @@ function Landing() {
           </div>
         </div>
         <div className="flex justify-center mt-1">
-          <a
-            className="px-8 py-2 text-lg font-medium text-white transition-colors duration-300 transform border border-white rounded hover:bg-primary hover:border-transparent "
-            href="/projects"
-            data-aos="fade-right"
-            data-aos-anchor-placement="top-bottom"
-          >
-            View all Projects <i class="fas fa-angle-right"></i>
-          </a>
+          <Link to="/projects">
+            <a
+              className="px-8 py-2 text-lg font-medium text-white transition-colors duration-300 transform border border-white rounded hover:bg-primary hover:border-transparent "
+              data-aos="fade-right"
+              data-aos-anchor-placement="top-bottom"
+            >
+              View all Projects <i class="fas fa-angle-right"></i>
+            </a>
+          </Link>
         </div>
       </section>
-      <Footer />
     </div>
   );
 }

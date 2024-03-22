@@ -6,7 +6,10 @@ function Projects() {
   return (
     <div>
       <section class="bg-white dark:bg-base-200 pb-20">
-        <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-12">
+        <div
+          class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-12"
+          data-aos="fade-up"
+        >
           <a
             href="#"
             class="inline-flex justify-between items-center py-1 px-1 pr-4 mb-7 text-sm text-gray-700 bg-gray-100 rounded-full dark:bg-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700"
@@ -36,7 +39,10 @@ function Projects() {
 
       <section class="bg-white dark:bg-base-100">
         <div class="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
-          <div class="mr-auto place-self-center lg:col-span-7">
+          <div
+            class="mr-auto place-self-center lg:col-span-7"
+            data-aos="fade-right"
+          >
             <h1 class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">
               Actively working on
             </h1>
@@ -51,7 +57,10 @@ function Projects() {
               View Project
             </a>
           </div>
-          <div class="hidden lg:mt-0 lg:col-span-5 lg:flex">
+          <div
+            class="hidden lg:mt-0 lg:col-span-5 lg:flex"
+            data-aos="fade-left"
+          >
             <img
               src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/phone-mockup.png"
               alt="mockup"
@@ -63,7 +72,7 @@ function Projects() {
       <section class="flex flex-wrap p-2 md:p-10 ">
         {Project.myProjects.map(function (project, index) {
           return (
-            <div className="xl:w-1/4  md:w-1/2 p-4">
+            <div className="xl:w-1/4  md:w-1/2 p-4" data-aos="fade-up">
               <div className="bg-base-300 bg-opacity-100 p-6 rounded-lg transform hover:scale-105 transition duration-300 cursor-auto">
                 <img
                   className="h-44  rounded w-full object-cover object-center mb-6"
@@ -98,11 +107,18 @@ function Projects() {
       </section>
 
       <section className="bg-white dark:bg-base-300 p-5 md:p-10 text-center pt-10 md:pt-20 pb-10 md:pb-20 flex items-center justify-center">
-        <h1 className="mb-2 md:mb-4 text-xl md:text-3xl font-extrabold tracking-tight leading-none xl:text-5xl dark:text-white mx-auto">
+        <h1
+          className="mb-2 md:mb-4 text-xl md:text-3xl font-extrabold tracking-tight leading-none xl:text-5xl dark:text-white mx-auto"
+          data-aos="fade-right"
+        >
           Published Games
         </h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-          <div className="stats shadow p-2">
+          <div
+            className="stats shadow p-2"
+            data-aos="fade-up"
+            data-aos-offset="100"
+          >
             <div className="stat">
               <div className="stat-figure text-secondary">
                 <div className="avatar online">
@@ -119,7 +135,11 @@ function Projects() {
               <div className="stat-desc">Downloads</div>
             </div>
           </div>
-          <div className="stats shadow p-2">
+          <div
+            className="stats shadow p-2"
+            data-aos="fade-up"
+            data-aos-offset="100"
+          >
             <div className="stat">
               <div className="stat-figure text-secondary">
                 <div className="avatar online">
@@ -136,7 +156,11 @@ function Projects() {
               <div className="stat-desc">Downloads</div>
             </div>
           </div>
-          <div className="stats shadow p-2">
+          <div
+            className="stats shadow p-2"
+            data-aos="fade-up"
+            data-aos-offset="100"
+          >
             <div className="stat">
               <div className="stat-figure text-secondary">
                 <div className="avatar online">
