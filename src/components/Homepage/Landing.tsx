@@ -59,9 +59,11 @@ function Landing() {
               Pruthvi Mohanlal.
             </h1>
             <p className="py-6 max-w-xl">
-              Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-              excepturi exercitationem quasi. In deleniti eaque aut repudiandae
-              et a id nisi.
+              Highly motivated Front-end Developer with experience in building
+              user-centric web applications. Skilled in React.js Node.js HTML,
+              CSS (Tailwind CSS), and eager to learn new technologies. I have
+              strong problem-solving and communication skills to collaborate
+              effectively within a team.
             </p>
             <button className="btn btn-primary text-white">Say Hi</button>
           </div>
@@ -90,9 +92,11 @@ function Landing() {
               About me
             </h2>
             <p className="mb-6 font-light text-gray-500 md:text-lg dark:text-gray-400">
-              Flowbite helps you connect with friends and communities of people
-              who share your interests. Connecting with your friends and family
-              as well as discovering new ones is easy with features like Groups.
+              Highly motivated Front-end Developer with experience in building
+              user-centric web applications. Skilled in React.js Node.js HTML,
+              CSS (Tailwind CSS), and eager to learn new technologies. I have
+              strong problem-solving and communication skills to collaborate
+              effectively within a team.
             </p>
             <a
               href="#"

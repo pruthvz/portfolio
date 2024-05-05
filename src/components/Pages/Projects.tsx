@@ -45,8 +45,14 @@ function Projects() {
               Actively working on
             </h1>
             <p className="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
-              From checkout to global sales tax compliance, companies around the
-              world use Flowbite to simplify their payment stack.
+              RevvLane is a social network designed exclusively for car
+              enthusiasts. It features customizable profiles, content sharing
+              (images, videos), specialized car groups, expert advice forums,
+              event coordination for car meets, a gallery for saving car images,
+              a chat system, and a marketplace for buying, selling, and trading
+              cars and parts. It's a one-stop platform for connecting with
+              fellow enthusiasts, sharing passion, and accessing resources
+              within the automotive community.
             </p>
             <a
               href="#"
