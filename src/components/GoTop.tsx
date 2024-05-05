@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { Component } from "react";
 
 export default class GoTop extends Component {
   constructor(props) {
@@ -40,7 +40,7 @@ export default class GoTop extends Component {
       <div className="back-to-top show-back-to-top">
         {is_visible && (
           <div className="top" onClick={() => this.scrollToTop()}>
-            <i class="fas fa-arrow-up"></i>
+            <i className="fas fa-arrow-up"></i>
           </div>
         )}
       </div>

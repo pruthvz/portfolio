@@ -1,25 +1,23 @@
-import React from "react";
-import { TypeAnimation } from "react-type-animation";
 import Project from "../Projects";
 
 function Projects() {
   return (
     <div>
-      <section class="bg-white dark:bg-base-200 pb-20">
+      <section className="bg-white dark:bg-base-200 pb-20">
         <div
-          class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-12"
+          className="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-12"
           data-aos="fade-up"
         >
           <a
             href="#"
-            class="inline-flex justify-between items-center py-1 px-1 pr-4 mb-7 text-sm text-gray-700 bg-gray-100 rounded-full dark:bg-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700"
+            className="inline-flex justify-between items-center py-1 px-1 pr-4 mb-7 text-sm text-gray-700 bg-gray-100 rounded-full dark:bg-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700"
             role="alert"
           >
-            <span class="text-xs bg-primary-600 rounded-full text-white px-4 py-1.5 mr-3">
+            <span className="text-xs bg-primary-600 rounded-full text-white px-4 py-1.5 mr-3">
               My Projects
             </span>
             <svg
-              class="ml-2 w-5 h-5"
+              className="ml-2 w-5 h-5"
               fill="currentColor"
               viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg"
@@ -31,34 +29,34 @@ function Projects() {
               ></path>
             </svg>
           </a>
-          <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
+          <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
             Personal Projects, Client Projects GitHub Contributions
           </h1>
         </div>
       </section>
 
-      <section class="bg-white dark:bg-base-100">
-        <div class="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
+      <section className="bg-white dark:bg-base-100">
+        <div className="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
           <div
-            class="mr-auto place-self-center lg:col-span-7"
+            className="mr-auto place-self-center lg:col-span-7"
             data-aos="fade-right"
           >
-            <h1 class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">
+            <h1 className="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">
               Actively working on
             </h1>
-            <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
+            <p className="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
               From checkout to global sales tax compliance, companies around the
               world use Flowbite to simplify their payment stack.
             </p>
             <a
               href="#"
-              class=" btn btn-primary inline-flex items-center justify-center text-white"
+              className=" btn btn-primary inline-flex items-center justify-center text-white"
             >
               View Project
             </a>
           </div>
           <div
-            class="hidden lg:mt-0 lg:col-span-5 lg:flex"
+            className="hidden lg:mt-0 lg:col-span-5 lg:flex"
             data-aos="fade-left"
           >
             <img
@@ -69,8 +67,8 @@ function Projects() {
         </div>
       </section>
 
-      <section class="flex flex-wrap p-2 md:p-10 ">
-        {Project.myProjects.map(function (project, index) {
+      <section className="flex flex-wrap p-2 md:p-10 ">
+        {Project.myProjects.map(function (project) {
           return (
             <div className="xl:w-1/4  md:w-1/2 p-4" data-aos="fade-up">
               <div className="bg-base-300 bg-opacity-100 p-6 rounded-lg transform hover:scale-105 transition duration-300 cursor-auto">

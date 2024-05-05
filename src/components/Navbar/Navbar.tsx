@@ -49,10 +49,10 @@ function Navbar() {
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
-            <li class="p-1">
+            <li className="p-1">
               <Link to="/">Home</Link>
             </li>
-            <li class="p-1">
+            <li className="p-1">
               <Link to="/projects">Projects</Link>
             </li>
             {/* <li>
@@ -70,17 +70,17 @@ function Navbar() {
                 </ul>
               </details>
             </li> */}
-            <li class="p-1">
+            <li className="p-1">
               <Link to="about">About</Link>
             </li>
           </ul>
         </div>
         <div className="navbar-end">
           <a className="p-2">
-            <i class="fa-brands fa-twitter hidden md:flex"></i>
+            <i className="fa-brands fa-twitter hidden md:flex"></i>
           </a>
           <a className="p-2">
-            <i class="fa-brands fa-github hidden md:flex"></i>
+            <i className="fa-brands fa-github hidden md:flex"></i>
           </a>
           <a className="btn">Contact me</a>
         </div>

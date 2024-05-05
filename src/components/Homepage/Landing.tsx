@@ -1,7 +1,5 @@
-import React from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { TypeAnimation } from "react-type-animation";
-import Footer from "../Footer/Footer";
 
 const skills = [
   { name: "Python" },
@@ -115,14 +113,14 @@ function Landing() {
           </div>
         </div>
       </section>
-      <div class="min-h-screen bg-base-200 flex items-center justify-center">
-        <div class="text-center">
+      <div className="min-h-screen bg-base-200 flex items-center justify-center">
+        <div className="text-center">
           <div>
-            <h2 class="mb-4 text-3xl md:text-5xl tracking-tight font-extrabold text-gray-900 dark:text-white">
+            <h2 className="mb-4 text-3xl md:text-5xl tracking-tight font-extrabold text-gray-900 dark:text-white">
               Skills
             </h2>
           </div>
-          <div class="grid grid-cols-1 md:grid-cols-4 gap-4 p-6 md:p-20 rounded-2xl">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 p-6 md:p-20 rounded-2xl">
             {skills.map((lang, index) => (
               <div
                 key={index}
@@ -319,7 +317,7 @@ function Landing() {
               data-aos="fade-right"
               data-aos-anchor-placement="top-bottom"
             >
-              View all Projects <i class="fas fa-angle-right"></i>
+              View all Projects <i className="fas fa-angle-right"></i>
             </a>
           </Link>
         </div>
