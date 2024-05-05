@@ -59,15 +59,12 @@ function About() {
 
             <div class="pt-5">
               <a
-                href="#"
+                href=""
                 class="p-3 pl-10 pr-10 bg-primary text-white rounded-full"
               >
                 <i class="fa-solid fa-arrow-down"></i>
               </a>
-              <a
-                href="https://github.com/pruthvz"
-                class="p-3 ml-2  bg-gray-600 rounded-full text-white"
-              >
+              <a href="" class="p-3 ml-2  bg-gray-600 rounded-full text-white">
                 <i class="fa-brands fa-github "></i>
               </a>
               <a href="" class="p-3 ml-2 bg-gray-600 rounded-full text-white">
