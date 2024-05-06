@@ -1,5 +1,9 @@
 import { Link } from "react-router-dom";
 import { TypeAnimation } from "react-type-animation";
+import spatepate from "../../assets/projectImg/spatepate.png";
+import oopsDev from "../../assets/projectImg/oopsdev.png";
+import diu from "../../assets/projectImg/diutravels.png";
+import projectwee from "../../assets/projectImg/weee.png";
 
 const skills = [
   { name: "Python" },
@@ -159,7 +163,7 @@ function Landing() {
               >
                 <img
                   className="h-44  rounded w-full object-cover object-center mb-6"
-                  src="/static/projectImg/spatepate.png"
+                  src={spatepate}
                   alt="content"
                 />
                 <h3 className="tracking-widest text-primary text-xs font-medium title-font mt-3">
@@ -200,7 +204,7 @@ function Landing() {
               >
                 <img
                   className=" h-48 rounded w-full object-cover object-center mb-6"
-                  src="/static/projectImg/oopsdev.png"
+                  src={oopsDev}
                   alt="content"
                 />
                 <h3 className="tracking-widest text-primary text-xs font-medium title-font mt-3">
@@ -239,7 +243,7 @@ function Landing() {
               >
                 <img
                   className="h-52 rounded w-full object-cover object-center mb-6"
-                  src="/static/projectImg/diutravels.png"
+                  src={diu}
                   alt="content"
                 />
                 <h3 className="tracking-widest text-primary text-xs font-medium title-font mt-3">
@@ -277,7 +281,7 @@ function Landing() {
               >
                 <img
                   className="h-52 rounded w-full mb-6"
-                  src="/static/projectImg/weee.png"
+                  src={projectwee}
                   alt="content"
                   height={600}
                   width={1000}
@@ -314,13 +318,13 @@ function Landing() {
             {/* end of cards */}
           </div>
         </div>
-        <div className="flex justify-center mt-1">
-          <Link to="/projects">
-            <a
-              className="px-8 py-2 text-lg font-medium text-white transition-colors duration-300 transform border border-white rounded hover:bg-primary hover:border-transparent "
-              data-aos="fade-right"
-              data-aos-anchor-placement="top-bottom"
-            >
+        <div className="flex justify-center mt-1 mb-10 md:mb-10">
+          <Link
+            to="/projects"
+            data-aos="fade-right"
+            data-aos-anchor-placement="top-bottom"
+          >
+            <a className="px-8 py-2 text-lg font-medium text-white transition-colors duration-300 transform border border-white rounded hover:bg-primary hover:border-transparent  mb-10">
               View all Projects <i className="fas fa-angle-right"></i>
             </a>
           </Link>

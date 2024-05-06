@@ -1,4 +1,6 @@
 import Project from "../Projects";
+import crescent from "../../assets/crescent.png";
+import revvlane from "../../assets/revvlane.png";
 
 function Projects() {
   return (
@@ -34,15 +36,46 @@ function Projects() {
           </h1>
         </div>
       </section>
-
       <section className="bg-white dark:bg-base-100">
+        <div className="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
+          <div
+            className="mt-10 lg:mt-0 lg:col-span-5 lg:flex mr-5"
+            data-aos="fade-left"
+          >
+            <img src={crescent} alt="mockup" className="w-96" />
+          </div>
+          <div
+            className="mr-auto place-self-center lg:col-span-7"
+            data-aos="fade-right"
+          >
+            <h1 className="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">
+              crescent
+            </h1>
+            <p className="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
+              Me and my sister started our own clothing brand called "crescent",
+              our brand niche is streetwear designs. We make hoodie/tshirt
+              designs. The clothing brand business has taught me all the
+              business side of running a startup business. Please feel free to
+              check out our shop :)
+            </p>
+            <a
+              href="https://shopcrescent.uk/password"
+              className=" btn btn-primary inline-flex items-center justify-center text-white"
+            >
+              Shop now
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-white dark:bg-base-200">
         <div className="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
           <div
             className="mr-auto place-self-center lg:col-span-7"
             data-aos="fade-right"
           >
             <h1 className="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">
-              Actively working on
+              Revvlane (project)
             </h1>
             <p className="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
               RevvLane is a social network designed exclusively for car
@@ -62,13 +95,10 @@ function Projects() {
             </a>
           </div>
           <div
-            className="hidden lg:mt-0 lg:col-span-5 lg:flex"
+            className="mt-10 lg:mt-0 lg:col-span-5 lg:flex"
             data-aos="fade-left"
           >
-            <img
-              src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/phone-mockup.png"
-              alt="mockup"
-            />
+            <img src={revvlane} alt="mockup" className="object-contain " />
           </div>
         </div>
       </section>
