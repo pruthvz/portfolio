@@ -99,6 +99,13 @@ function About() {
                 <i className="fa-solid fa-arrow-down"></i>
               </a>
               <a
+                href="https://www.linkedin.com/in/pruthvi-mohanlal-b40602190/"
+                target="_blank"
+                className="p-3 ml-2  bg-gray-600 rounded-full text-white"
+              >
+                <i className="fa-brands fa-linkedin-in "></i>
+              </a>
+              <a
                 href="https://github.com/pruthvz"
                 target="_blank"
                 className="p-3 ml-2  bg-gray-600 rounded-full text-white"

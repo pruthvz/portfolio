@@ -69,6 +69,13 @@ function Navbar() {
         </div>
         <div className="navbar-end">
           <a
+            href="https://www.linkedin.com/in/pruthvi-mohanlal-b40602190/"
+            target="_blank"
+            className="p-2"
+          >
+            <i className="fa-brands fa-linkedin-in hidden md:flex"></i>
+          </a>
+          <a
             href="https://twitter.com/justpruthvi"
             target="_blank"
             className="p-2"

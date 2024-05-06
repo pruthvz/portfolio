@@ -69,7 +69,14 @@ function Landing() {
               strong problem-solving and communication skills to collaborate
               effectively within a team.
             </p>
-            <button className="btn btn-primary text-white">Say Hi</button>
+            <button
+              onClick={() => {
+                window.location.href = "mailto:pruthvimohanlal10@gmail.com";
+              }}
+              className="btn btn-primary text-white"
+            >
+              Say Hi
+            </button>
           </div>
         </div>
       </div>
