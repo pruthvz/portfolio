@@ -30,18 +30,10 @@ function Navbar() {
                 <Link to="/">Home</Link>
               </li>
               <li>
-                <a>Parent</a>
-                <ul className="p-2">
-                  <li>
-                    <a>Submenu 1</a>
-                  </li>
-                  <li>
-                    <a>Submenu 2</a>
-                  </li>
-                </ul>
+                <Link to="/projects">Projects</Link>
               </li>
               <li>
-                <a>Item 3</a>
+                <Link to="/about">About me</Link>
               </li>
             </ul>
           </div>
@@ -76,13 +68,23 @@ function Navbar() {
           </ul>
         </div>
         <div className="navbar-end">
-          <a className="p-2">
+          <a
+            href="https://twitter.com/justpruthvi"
+            target="_blank"
+            className="p-2"
+          >
             <i className="fa-brands fa-twitter hidden md:flex"></i>
           </a>
-          <a className="p-2">
+          <a href="https://github.com/pruthvz" target="_blank" className="p-2">
             <i className="fa-brands fa-github hidden md:flex"></i>
           </a>
-          <a className="btn">Contact me</a>
+          <div
+            onClick={() => {
+              window.location.href = "mailto:pruthvimohanlal10@gmail.com";
+            }}
+          >
+            <div className="btn">Contact me</div>
+          </div>
         </div>
       </div>
     </div>

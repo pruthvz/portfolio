@@ -93,7 +93,7 @@ function About() {
             </p>
             <div className="pt-5">
               <a
-                href=""
+                href="/resume"
                 className="p-3 pl-10 pr-10 bg-primary text-white rounded-full"
               >
                 <i className="fa-solid fa-arrow-down"></i>
