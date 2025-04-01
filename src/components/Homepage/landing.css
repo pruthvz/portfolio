@@ -52,6 +52,54 @@
   }
 }
 
+/* Glitch animation for 404 page */
+.glitch-1 {
+  animation: glitch-1 2s linear infinite alternate-reverse;
+}
+.glitch-2 {
+  animation: glitch-2 3s linear infinite alternate-reverse;
+}
+@keyframes glitch-1 {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 1px);
+  }
+  40% {
+    transform: translate(2px, -1px);
+  }
+  60% {
+    transform: translate(-1px, -1px);
+  }
+  80% {
+    transform: translate(1px, 1px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+@keyframes glitch-2 {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(2px, 1px);
+  }
+  40% {
+    transform: translate(-1px, -2px);
+  }
+  60% {
+    transform: translate(1px, 2px);
+  }
+  80% {
+    transform: translate(-2px, -1px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
 .animate-wave {
   animation: wave 3s ease-in-out infinite;
 }
