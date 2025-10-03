@@ -1,477 +1,204 @@
 import { Link } from "react-router-dom";
 import { TypeAnimation } from "react-type-animation";
+import { useEffect } from "react";
+import revvlane from "../../assets/revvlane/img_7268.png";
+import wetogether from "../../assets/wetogether/navigation.png";
 import spatepate from "../../assets/projectImg/spatepate.png";
-import oopsDev from "../../assets/projectImg/oopsdev.png";
+import instabooth from "../../assets/projectImg/booth.png";
+import crescent from "../../assets/projectImg/crescent.png";
 import diu from "../../assets/projectImg/diutravels.png";
-import projectwee from "../../assets/projectImg/weee.png";
-import { useState, useEffect, useRef } from "react";
 import "./landing.css"; // Import the CSS file that contains animations
 
-const skills = [
-  { name: "Python", category: "Language" },
-  { name: "JavaScript", category: "Language" },
-  { name: "Node.JS", category: "Backend" },
-  { name: "C#", category: "Language" },
-  { name: "C++", category: "Language" },
-  { name: "Next.JS", category: "Frontend" },
-  { name: "React.JS", category: "Frontend" },
-  { name: "Vite.JS", category: "Frontend" },
-  { name: "Django", category: "Backend" },
-  { name: "TailwindCSS", category: "Frontend" },
-  { name: "HTML/CSS", category: "Frontend" },
-  { name: "Unity 2D/3D", category: "Other" },
-  { name: "MySQL", category: "Database" },
-  { name: "Git", category: "Tool" },
-  { name: "GitHub", category: "Tool" },
-];
 
 function Landing() {
-  const [activeSkillCategory, setActiveSkillCategory] = useState("All");
-  const categories = [
-    "All",
-    ...Array.from(new Set(skills.map((s) => s.category))),
-  ];
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const heroSectionRef = useRef<HTMLDivElement>(null);
-
-  const filteredSkills =
-    activeSkillCategory === "All"
-      ? skills
-      : skills.filter((skill) => skill.category === activeSkillCategory);
-
-  // Handle mouse movement for the interactive background
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      const heroSection = heroSectionRef.current;
-      if (!heroSection) return;
-
-      const rect = heroSection.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-
-      setMousePosition({ x, y });
-    };
-
-    document.addEventListener("mousemove", handleMouseMove);
-    return () => {
-      document.removeEventListener("mousemove", handleMouseMove);
-    };
+    document.title = "Pruthvi Mohanlal - Homepage";
   }, []);
 
   return (
-    <div className="bg-gradient-to-b from-base-300 to-base-100 dark:from-gray-900 dark:to-black text-gray-100">
-      {/* Hero Section - Modern with Glassmorphism */}
-      <div
-        ref={heroSectionRef}
-        className="min-h-screen relative overflow-hidden flex items-center"
-      >
-        {/* Background elements - interactive gradient circles */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div
-            className="absolute w-80 h-80 bg-primary/20 rounded-full filter blur-3xl transition-all duration-300 ease-out"
-            style={{
-              top: mousePosition.y * 0.05 - 60,
-              left: mousePosition.x * 0.05 - 40,
-              transform: `translate(${mousePosition.x * -0.02}px, ${
-                mousePosition.y * -0.02
-              }px)`,
-              opacity: 0.7,
-            }}
-          ></div>
-          <div
-            className="absolute w-64 h-64 bg-secondary/15 rounded-full filter blur-3xl transition-all duration-500 ease-out"
-            style={{
-              top: mousePosition.y * 0.03 + 100,
-              right: mousePosition.x * -0.03 + 100,
-              transform: `translate(${mousePosition.x * 0.01}px, ${
-                mousePosition.y * 0.02
-              }px)`,
-              opacity: 0.6,
-            }}
-          ></div>
-          <div
-            className="absolute w-40 h-40 bg-accent/20 rounded-full filter blur-3xl transition-all duration-700 ease-out"
-            style={{
-              bottom: mousePosition.y * -0.02 + 100,
-              left: mousePosition.x * 0.01 + 100,
-              transform: `translate(${mousePosition.x * -0.01}px, ${
-                mousePosition.y * -0.01
-              }px)`,
-              opacity: 0.6,
-            }}
-          ></div>
+    <div className="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+      {/* Hero Section - Minimal & Clean */}
+      <div className="min-h-screen relative flex items-center justify-center">
+        {/* Subtle background grid */}
+        <div className="absolute inset-0 opacity-5 dark:opacity-10">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)`,
+            backgroundSize: '20px 20px'
+          }}></div>
         </div>
 
-        <div className="container mx-auto px-4 z-10">
-          <div className="hero-content flex flex-col-reverse lg:flex-row-reverse gap-12 lg:gap-16 py-10">
-            {/* Hero Text */}
-            <div
-              className="lg:w-1/2 w-full"
-              data-aos="fade-left"
-              data-aos-duration="1000"
-            >
-              <div className="mockup-code md:ml-20 bg-base-300/80 backdrop-blur-lg shadow-2xl mx-auto p-6 text-xl border border-base-100/20 rounded-xl transform lg:scale-110 will-change-transform hover:shadow-lg hover:shadow-indigo-500/10 transition-all duration-300 lg:w-[120%] lg:-mr-10">
-                {/* Browser chrome with enhanced UI */}
-                <div className="flex items-center justify-between mb-5 pb-2 border-b border-gray-700/50">
-                  <div className="flex space-x-2.5">
-                    <div className="w-4 h-4 rounded-full bg-red-500 hover:bg-red-600 transition-colors cursor-pointer"></div>
-                    <div className="w-4 h-4 rounded-full bg-yellow-500 hover:bg-yellow-600 transition-colors cursor-pointer"></div>
-                    <div className="w-4 h-4 rounded-full bg-green-500 hover:bg-green-600 transition-colors cursor-pointer"></div>
-                  </div>
-                  <div className="hidden sm:flex items-center px-3 py-1 rounded-md bg-base-200/50 text-xs text-gray-400 border border-gray-700/30">
-                    <i className="fas fa-lock text-xs mr-2 text-green-500"></i>
-                    pruthvi.tech
-                  </div>
-                  <div className="flex space-x-2">
-                    <div className="w-4 h-4 rounded-sm bg-gray-700/60 hover:bg-gray-600/60 transition-colors cursor-pointer flex items-center justify-center">
-                      <i className="fas fa-minus text-[8px] text-gray-400"></i>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Terminal Content with improved styling */}
-                <div className="terminal-content space-y-3 font-mono">
-                  <pre
-                    data-prefix="$"
-                    className="text-success flex items-center"
-                  >
-                    <code className="flex items-center">
-                      <span>npm i portfolio</span>
-                      <span className="ml-1 w-2 h-4 bg-green-500 opacity-0 animate-cursor-blink"></span>
-                    </code>
-                  </pre>
-
-                  <pre
-                    data-prefix=">"
-                    className="text-warning flex items-start"
-                  >
-                    <code className="flex flex-col">
-                      <span>installing...</span>
-                      <span className="text-xs text-gray-500">
-                        fetching metadata from registry...
-                      </span>
-                      <div className="w-full h-1 mt-1 bg-base-200 rounded-full overflow-hidden">
-                        <div className="h-full bg-gradient-to-r from-indigo-500 to-accent w-full animate-gradient-x"></div>
-                      </div>
-                    </code>
-                  </pre>
-
-                  <pre data-prefix=">" className="text-success font-mono">
-                    <div className="flex items-center">
-                      <span className="text-accent">✓</span>
-                      <code className="ml-2">
-                        Name:{" "}
-                        <span className="text-indigo-400">
-                          "Pruthvi Mohanlal"
-                        </span>
-                      </code>
-                    </div>
-                  </pre>
-
-                  <pre data-prefix=">" className="text-success font-mono">
-                    <div className="flex items-center">
-                      <span className="text-accent">✓</span>
-                      <code className="ml-2">
-                        Role:{" "}
-                        <span className="text-indigo-400">
-                          "Frontend Developer"
-                        </span>
-                      </code>
-                    </div>
-                  </pre>
-
-                  <pre data-prefix=">" className="text-success font-mono">
-                    <div className="flex items-center">
-                      <span className="text-accent">✓</span>
-                      <code className="ml-2">
-                        Status:{" "}
-                        <span className="text-indigo-400">
-                          "Ready for new challenges"
-                        </span>
-                      </code>
-                    </div>
-                  </pre>
-
-                  <pre data-prefix="$" className="mt-4 flex items-center group">
-                    <code className="flex items-center">
-                      <TypeAnimation
-                        sequence={[
-                          "npm run awesome-portfolio",
-                          1000,
-                          "npm run hire-me",
-                          1000,
-                          "npm run collaborate",
-                          1000,
-                        ]}
-                        wrapper="span"
-                        speed={50}
-                        repeat={Infinity}
-                        className="text-accent"
-                        style={{
-                          display: "inline-block",
-                          willChange: "contents",
-                        }}
-                      />
-                      <span className="ml-1 w-2 h-4 bg-accent opacity-100 animate-cursor-blink"></span>
-                    </code>
-                    <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 ml-2 text-xs text-gray-500">
-                      Press Enter to continue
-                    </span>
-                  </pre>
-                </div>
-
-                {/* Interactive buttons */}
-                <div className="mt-6 pt-3 border-t border-gray-700/30 flex justify-between">
-                  <button className="px-3 py-1 bg-indigo-500/20 text-indigo-400 text-xs rounded hover:bg-indigo-500/30 transition-colors flex items-center gap-1">
-                    <i className="fas fa-terminal text-xs"></i> Open Terminal
-                  </button>
-                  <button className="px-3 py-1 bg-green-500/20 text-green-400 text-xs rounded hover:bg-green-500/30 transition-colors flex items-center gap-1">
-                    <i className="fas fa-play text-xs"></i> Run Project
-                  </button>
-                </div>
+        <div className="container mx-auto px-6 z-10">
+          <div className="text-center max-w-4xl mx-auto">
+            {/* Greeting */}
+            <div className="mb-8" data-aos="fade-up" data-aos-duration="800">
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-full text-sm text-gray-600 dark:text-gray-400">
+                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                Available for new projects
               </div>
             </div>
 
-            {/* Hero Text */}
-            <div
-              className="lg:w-1/2 w-full text-center lg:text-left"
-              data-aos="fade-right"
-              data-aos-duration="1000"
-            >
-              <div className="inline-block px-3 py-1 mb-6 bg-primary/10 backdrop-blur-sm text-primary rounded-full text-sm font-medium">
+            {/* Main heading */}
+            <div className="mb-8" data-aos="fade-up" data-aos-delay="200">
+              <h1 className="text-5xl md:text-7xl lg:text-8xl font-light tracking-tight mb-4">
+                <span className="block text-gray-900 dark:text-white">Hi, pruthvi here </span>
+                <span className="block text-gray-600 dark:text-gray-400 text-3xl pt-2">Code. Coffee. Repeat.</span>
+              </h1>
+            </div>
+
+            {/* Subtitle with typewriter */}
+            <div className="mb-12" data-aos="fade-up" data-aos-delay="400">
+              <div className="text-xl md:text-2xl text-gray-600 dark:text-gray-400 font-light">
                 <TypeAnimation
-                  sequence={["Hi there, welcome to my portfolio", 2000]}
+                  sequence={[
+                    "Web Developer & Designer",
+                    2000,
+                    "Creating digital experiences",
+                    2000,
+                    "Building modern web applications",
+                    2000,
+                  ]}
                   wrapper="span"
-                  speed={40}
-                  repeat={0}
-                  style={{ display: "inline-block" }}
+                  speed={50}
+                  repeat={Infinity}
+                  className="inline-block"
                 />
               </div>
-              <h1 className="text-7xl lg:text-9xl font-bold tracking-tight mb-6">
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
-                  Pruthvi
-                </span>
-              </h1>
-              <h1 className="text-7xl lg:text-9xl font-bold tracking-tight mb-6">
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
-                  Mohanlal
-                </span>
-              </h1>
-              <p className="text-xl md:text-2xl font-light opacity-80 mb-8 max-w-xl">
-                Frontend Developer crafting beautiful, user-centric web
-                experiences with modern technologies.
-              </p>
-              <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
-                <button
-                  onClick={() => {
-                    window.location.href = "mailto:pruthvimohanlal10@gmail.com";
-                  }}
-                  className="btn btn-primary btn-lg gap-2 text-white shadow-lg hover:shadow-primary/50 transition-all"
-                >
-                  <i className="fas fa-paper-plane"></i> Get in Touch
-                </button>
-                <a
-                  href="#projects"
-                  className="btn btn-outline btn-lg backdrop-blur-sm border-gray-500 hover:border-primary hover:bg-primary/10 hover:text-primary transition-all"
-                >
-                  View My Work
-                </a>
-              </div>
+            </div>
 
-              {/* Social Media Icons */}
-              <div className="mt-8 flex gap-4 justify-center lg:justify-start">
-                <a
-                  href="https://github.com/pruthvz"
-                  target="_blank"
-                  className="text-2xl hover:text-primary transition-colors"
-                >
-                  <i className="fab fa-github"></i>
-                </a>
-                <a
-                  href="https://linkedin.com/in/"
-                  target="_blank"
-                  className="text-2xl hover:text-primary transition-colors"
-                >
-                  <i className="fab fa-linkedin"></i>
-                </a>
-              </div>
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16" data-aos="fade-up" data-aos-delay="600">
+              <button
+                onClick={() => {
+                  window.location.href = "mailto:pruthvimohanlal10@gmail.com";
+                }}
+                className="group relative px-8 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-full font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg"
+              >
+                <span className="relative z-10">Get in Touch</span>
+              </button>
+              <a
+                href="#projects"
+                className="px-8 py-3 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white rounded-full font-medium transition-all duration-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+              >
+                View My Work
+              </a>
+            </div>
+
+            {/* Social Links */}
+            <div className="flex gap-6 justify-center" data-aos="fade-up" data-aos-delay="800">
+              <a
+                href="https://github.com/pruthvz"
+                target="_blank"
+                className="w-12 h-12 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-all duration-300 hover:scale-110"
+              >
+                <i className="fab fa-github text-xl"></i>
+              </a>
+              <a
+                href="https://linkedin.com/in/"
+                target="_blank"
+                className="w-12 h-12 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-all duration-300 hover:scale-110"
+              >
+                <i className="fab fa-linkedin text-xl"></i>
+              </a>
             </div>
           </div>
         </div>
 
-        {/* Scroll down indicator */}
-        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <a href="#about" className="text-white/50 hover:text-white">
-            <i className="fas fa-chevron-down"></i>
+        {/* Scroll indicator */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2" data-aos="fade-up" data-aos-delay="1000">
+          <a href="#about" className="flex flex-col items-center text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
+            <span className="text-sm mb-2">Scroll</span>
+            <div className="w-6 h-10 border border-gray-300 dark:border-gray-600 rounded-full flex justify-center">
+              <div className="w-1 h-3 bg-gray-400 dark:bg-gray-500 rounded-full mt-2 animate-bounce"></div>
+            </div>
           </a>
         </div>
       </div>
 
-      {/* About Me Section - Modern dashboard style */}
-      <section id="about" className="py-24 relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-base-300/50 to-base-100/50 -z-10"></div>
-        <div className="container mx-auto px-4">
-          <div
-            className="bg-base-300/30 backdrop-blur-lg rounded-2xl border border-base-100/20 shadow-xl overflow-hidden"
-            data-aos="fade-up"
-            data-aos-duration="1000"
-          >
-            <div className="gap-8 items-center py-12 px-8 lg:px-12 mx-auto xl:gap-16 md:grid md:grid-cols-2">
-              {/* Modern Dashboard/Analytics Visualization */}
-              <div
-                className="relative group"
-                data-aos="fade-right"
-                data-aos-delay="200"
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-accent/10 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
-                <div className="relative bg-gray-800/90 backdrop-blur-md rounded-xl p-3 border border-gray-700/50 shadow-2xl overflow-hidden">
-                  {/* Mock Browser UI */}
-                  <div className="flex items-center justify-between border-b border-gray-700/70 pb-2 mb-4">
-                    <div className="flex space-x-1.5">
-                      <div className="w-2.5 h-2.5 rounded-full bg-red-500"></div>
-                      <div className="w-2.5 h-2.5 rounded-full bg-yellow-500"></div>
-                      <div className="w-2.5 h-2.5 rounded-full bg-green-500"></div>
+      {/* About Me Section - Clean & Minimal */}
+      <section id="about" className="py-24 bg-gray-50 dark:bg-gray-800/50">
+        <div className="container mx-auto px-6">
+          <div className="max-w-6xl mx-auto">
+            <div className="grid lg:grid-cols-2 gap-16 items-center">
+              {/* Code Editor Mockup */}
+              <div className="relative" data-aos="fade-right" data-aos-duration="800">
+                <div className="bg-gray-900 rounded-lg shadow-2xl overflow-hidden">
+                  {/* Editor Header */}
+                  <div className="flex items-center justify-between px-4 py-3 bg-gray-800 border-b border-gray-700">
+                    <div className="flex items-center gap-2">
+                      <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                      <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                      <div className="w-3 h-3 bg-green-500 rounded-full"></div>
                     </div>
-                    <div className="h-4 w-64 bg-gray-700/60 rounded-md"></div>
-                    <div className="flex space-x-1">
-                      <div className="w-4 h-4 rounded-sm bg-gray-700/60"></div>
-                      <div className="w-4 h-4 rounded-sm bg-gray-700/60"></div>
-                      <div className="w-4 h-4 rounded-sm bg-gray-700/60"></div>
-                    </div>
+                    <div className="text-sm text-gray-400 font-mono">about.js</div>
+                    <div className="w-6"></div>
                   </div>
-
-                  {/* Dashboard Layout */}
-                  <div className="grid grid-cols-4 gap-3">
-                    {/* Sidebar */}
-                    <div className="col-span-1 space-y-2">
-                      {[1, 2, 3, 4, 5, 6, 7].map((_, index) => (
-                        <div
-                          key={index}
-                          className={`flex items-center space-x-2 p-2 rounded-md ${
-                            index === 0
-                              ? "bg-primary/20 text-primary"
-                              : "bg-gray-700/30"
-                          }`}
-                        >
-                          <div className="w-3.5 h-3.5 rounded-sm bg-gray-500/50"></div>
-                          <div
-                            className={`h-2 ${
-                              index === 0
-                                ? "w-16 bg-primary/50"
-                                : "w-12 bg-gray-600/50"
-                            } rounded-md`}
-                          ></div>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Main Content */}
-                    <div className="col-span-3 space-y-3">
-                      {/* Chart 1 - Animated Sine Wave */}
-                      <div className="h-28 bg-gray-800/60 rounded-lg border border-gray-700/30 p-3 overflow-hidden relative">
-                        <svg
-                          className="w-full h-full"
-                          viewBox="0 0 1000 200"
-                          preserveAspectRatio="none"
-                        >
-                          <path
-                            d="M0,100 C50,50 100,150 150,100 C200,50 250,150 300,100 C350,50 400,150 450,100 C500,50 550,150 600,100 C650,50 700,150 750,100 C800,50 850,150 900,100 C950,50 1000,150 1050,100"
-                            fill="none"
-                            stroke="url(#gradient)"
-                            strokeWidth="3"
-                            className="animate-wave"
-                          />
-                          <defs>
-                            <linearGradient
-                              id="gradient"
-                              x1="0%"
-                              y1="0%"
-                              x2="100%"
-                              y2="0%"
-                            >
-                              <stop offset="0%" stopColor="#4F46E5" />
-                              <stop offset="100%" stopColor="#06B6D4" />
-                            </linearGradient>
-                          </defs>
-                        </svg>
-                        <div className="absolute bottom-2 left-2 flex space-x-1">
-                          <div className="w-1 h-1 rounded-full bg-green-400"></div>
-                          <div className="w-10 h-1.5 rounded-md bg-gray-700/60"></div>
-                        </div>
+                  
+                  {/* Code Content */}
+                  <div className="p-6 font-mono text-sm">
+                    <div className="space-y-2">
+                      <div className="text-gray-500">// About Pruthvi</div>
+                      <div className="text-blue-400">const</div>
+                      <div className="text-white ml-4">
+                        <span className="text-blue-400">developer</span> = {"{"}
                       </div>
-
-                      {/* Charts Grid */}
-                      <div className="grid grid-cols-2 gap-3">
-                        {/* Chart 2 */}
-                        <div className="bg-gray-800/60 rounded-lg border border-gray-700/30 p-3 h-28 relative">
-                          <div className="flex items-end justify-between h-16 pt-2">
-                            {[1, 2, 3, 4, 5, 6, 7, 8].map((_, index) => (
-                              <div
-                                key={index}
-                                className="w-6 bg-gradient-to-t from-primary/70 to-accent/70 rounded-t-sm animate-bar"
-                                style={
-                                  {
-                                    height: `${Math.random() * 60 + 20}%`,
-                                    animationDelay: `${index * 0.1}s`,
-                                    "--delay": index,
-                                  } as React.CSSProperties
-                                }
-                              ></div>
-                            ))}
-                          </div>
-                          <div className="w-full border-t border-gray-700/40 mt-1"></div>
-                          <div className="flex justify-between mt-1">
-                            <div className="w-6 h-1 bg-gray-700/60 rounded-md"></div>
-                            <div className="w-6 h-1 bg-gray-700/60 rounded-md"></div>
-                            <div className="w-6 h-1 bg-gray-700/60 rounded-md"></div>
-                            <div className="w-6 h-1 bg-gray-700/60 rounded-md"></div>
-                          </div>
-                        </div>
-
-                        {/* Chart 3 */}
-                        <div className="bg-gray-800/60 rounded-lg border border-gray-700/30 p-3 h-28">
-                          <div className="flex justify-between h-3 mb-2">
-                            <div className="w-10 h-2 bg-gray-700/60 rounded-md"></div>
-                            <div className="w-6 h-2 bg-gray-700/60 rounded-md"></div>
-                          </div>
-                        </div>
+                      <div className="text-white ml-8">
+                        <span className="text-yellow-300">name</span>: <span className="text-green-400">"Pruthvi Mohanlal"</span>,
                       </div>
+                      <div className="text-white ml-8">
+                        <span className="text-yellow-300">role</span>: <span className="text-green-400">"Web Developer"</span>,
+                      </div>
+                      <div className="text-white ml-8">
+                        <span className="text-yellow-300">skills</span>: [
+                      </div>
+                      <div className="text-white ml-12">"React", "Next.js", "TypeScript"</div>
+                      <div className="text-white ml-8">],</div>
+                      <div className="text-white ml-8">
+                        <span className="text-yellow-300">passion</span>: <span className="text-green-400">"Creating beautiful web experiences"</span>
+                      </div>
+                      <div className="text-white ml-4">{"}"}</div>
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* About Text Content */}
-              <div
-                className="mt-8 md:mt-0"
-                data-aos="fade-left"
-                data-aos-delay="300"
-              >
-                <div className="inline-block px-3 py-1 mb-4 bg-primary/10 backdrop-blur-sm text-primary rounded-full text-sm font-medium">
-                  About Me
+              {/* About Content */}
+              <div data-aos="fade-left" data-aos-duration="800">
+                <div className="mb-6">
+                  <span className="inline-block px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full text-sm font-medium">
+                    About Me
+                  </span>
                 </div>
-                <h2 className="text-4xl font-bold tracking-tight mb-6 text-white">
-                  Crafting Digital Experiences
+                
+                <h2 className="text-4xl md:text-5xl font-light text-gray-900 dark:text-white mb-6">
+                  Building the web, one pixel at a time
                 </h2>
-                <p className="mb-6 text-lg text-gray-300 leading-relaxed">
-                  Highly motivated Front-end Developer with experience in
-                  building user-centric web applications. Skilled in React.js,
-                  Node.js, HTML, CSS (Tailwind CSS), and eager to learn new
-                  technologies. I combine technical expertise with creative
-                  problem-solving to build elegant, intuitive interfaces.
+                
+                <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed mb-8">
+                  I'm a passionate web developer and designer who loves creating 
+                  clean, functional, and beautiful digital experiences. With expertise 
+                  in modern frontend technologies and a first class honors degree in 
+                  Computer Science from the University of Lincoln, I focus on building 
+                  responsive, accessible, and performant web applications.
                 </p>
+
+                <div className="grid grid-cols-2 gap-6 mb-8">
+                  <div className="text-center p-4 bg-white dark:bg-gray-800 rounded-lg shadow-sm">
+                    <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">3+</div>
+                    <div className="text-sm text-gray-600 dark:text-gray-400">Years Experience</div>
+                  </div>
+                  <div className="text-center p-4 bg-white dark:bg-gray-800 rounded-lg shadow-sm">
+                    <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">20+</div>
+                    <div className="text-sm text-gray-600 dark:text-gray-400">Projects Completed</div>
+                  </div>
+                </div>
+
                 <a
-                  href="/resume"
-                  className="inline-flex items-center gap-2 bg-indigo-500 from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white font-medium px-5 py-2.5 rounded-lg shadow-lg hover:shadow-primary/20 transition-all duration-300 group"
+                  href="#about"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-full font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg"
                 >
-                  <span>View Resume</span>
-                  <svg
-                    className="w-5 h-5 transform group-hover:translate-x-1 transition-transform"
-                    fill="currentColor"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M19 9h-4V3H9v6H5l7 8zM4 19h16v2H4z"></path>
+                  <span>View More</span>
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                   </svg>
                 </a>
               </div>
@@ -480,404 +207,514 @@ function Landing() {
         </div>
       </section>
 
-      {/* Skills Section - Modern tabs and animated cards with refined glow */}
-      <section id="skills" className="py-24 relative">
-        <div className="absolute inset-0 overflow-hidden -z-10">
-          <div className="absolute -top-40 right-0 w-80 h-80 bg-primary/10 rounded-full filter blur-3xl opacity-50"></div>
-          <div className="absolute bottom-0 left-20 w-60 h-60 bg-accent/10 rounded-full filter blur-3xl opacity-50"></div>
-        </div>
-
-        <div className="container mx-auto px-4">
+      {/* Skills Section - Clean & Minimal */}
+      <section id="skills" className="py-24">
+        <div className="container mx-auto px-6">
           <div className="text-center mb-16" data-aos="fade-up">
-            <div className="inline-block px-3 py-1 mb-4 bg-primary/10 backdrop-blur-sm text-primary rounded-full text-sm font-medium">
-              My Expertise
+            <div className="mb-6">
+              <span className="inline-block px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full text-sm font-medium">
+                Skills & Technologies
+              </span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-              Technical Skills
+            <h2 className="text-4xl md:text-5xl font-light text-gray-900 dark:text-white mb-6">
+              What I work with
             </h2>
-            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-              A collection of technologies I've worked with and continue to
-              master
+            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+              Modern tools and technologies I use to build exceptional web experiences
             </p>
           </div>
 
-          {/* Skill Category Tabs */}
-          <div
-            className="flex justify-center mb-12 overflow-x-auto py-2"
-            data-aos="fade-up"
-            data-aos-delay="100"
-          >
-            <div className="inline-flex bg-base-300/50 backdrop-blur-md rounded-full p-1 shadow-md">
-              {categories.map((category) => (
-                <button
-                  key={category}
-                  onClick={() => setActiveSkillCategory(category)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
-                    activeSkillCategory === category
-                      ? "bg-primary text-white shadow-md"
-                      : "text-gray-400 hover:text-white"
-                  }`}
-                >
-                  {category}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Skills Grid with refined glow effect */}
-          <div
-            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6"
-            data-aos="fade-up"
-            data-aos-delay="200"
-          >
-            {filteredSkills.map((skill, index) => (
-              <div
-                key={index}
-                className="group relative"
-                data-aos="fade-up"
-                data-aos-delay={50 * index}
-              >
-                {/* Subtle glow effect */}
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/40 to-accent/40 rounded-xl blur-sm opacity-0 group-hover:opacity-40 transition-all duration-500 ease-out"></div>
-                <div className="relative bg-base-300/80 backdrop-blur-md p-6 rounded-xl flex flex-col items-center justify-center shadow-lg border border-base-100/20 h-full hover:transform hover:scale-105 transition-all duration-300">
-                  <div className="text-2xl text-gray-200 mb-2">
-                    {skill.name === "React.JS" && (
-                      <i className="fab fa-react text-blue-400"></i>
-                    )}
-                    {skill.name === "JavaScript" && (
-                      <i className="fab fa-js text-yellow-400"></i>
-                    )}
-                    {skill.name === "HTML/CSS" && (
-                      <i className="fab fa-html5 text-orange-500"></i>
-                    )}
-                    {skill.name === "Node.JS" && (
-                      <i className="fab fa-node text-green-500"></i>
-                    )}
-                    {skill.name === "Python" && (
-                      <i className="fab fa-python text-blue-500"></i>
-                    )}
-                    {skill.name === "Git" && (
-                      <i className="fab fa-git-alt text-orange-600"></i>
-                    )}
-                    {skill.name === "GitHub" && (
-                      <i className="fab fa-github text-gray-300"></i>
-                    )}
-                    {skill.name === "Next.JS" && (
-                      <i className="fab fa-react text-white"></i>
-                    )}
-                    {skill.name === "TailwindCSS" && (
-                      <i className="fab fa-css3 text-blue-400"></i>
-                    )}
-                    {/* Default icon for other skills */}
-                    {![
-                      "React.JS",
-                      "JavaScript",
-                      "HTML/CSS",
-                      "Node.JS",
-                      "Python",
-                      "Git",
-                      "GitHub",
-                      "Next.JS",
-                      "TailwindCSS",
-                    ].includes(skill.name) && (
-                      <i className="fas fa-code text-primary"></i>
-                    )}
+          {/* Interactive Skills View */}
+          <div className="max-w-5xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              {/* Frontend Technologies */}
+              <div className="space-y-4 group/category">
+                <h3 className="text-sm font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wide flex items-center gap-2 transition-all duration-300 group-hover/category:text-blue-500 dark:group-hover/category:text-blue-400">
+                  <i className="fas fa-laptop-code text-blue-500 transition-transform duration-300 group-hover/category:rotate-12"></i>
+                  Frontend
+                </h3>
+                <div className="space-y-2">
+                  <div className="tool-tech flex items-center gap-3 p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 transition-all duration-300 hover:border-blue-300 dark:hover:border-blue-600 hover:shadow-lg hover:scale-105 cursor-pointer group">
+                    <i className="fab fa-react text-blue-500 text-lg transition-transform duration-300 group-hover:rotate-180"></i>
+                    <span className="text-sm font-medium transition-colors duration-300 group-hover:text-blue-600 dark:group-hover:text-blue-400">React</span>
+                    <div className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <i className="fas fa-external-link-alt text-xs text-blue-500"></i>
+                    </div>
                   </div>
-                  <span className="text-sm font-medium text-white">
-                    {skill.name}
-                  </span>
-                  <span className="text-xs text-gray-400 mt-1">
-                    {skill.category}
-                  </span>
+                  <div className="tool-tech flex items-center gap-3 p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 transition-all duration-300 hover:border-blue-300 dark:hover:border-blue-600 hover:shadow-lg hover:scale-105 cursor-pointer group">
+                    <i className="fab fa-react text-gray-900 dark:text-white text-lg transition-transform duration-300 group-hover:rotate-180"></i>
+                    <span className="text-sm font-medium transition-colors duration-300 group-hover:text-blue-600 dark:group-hover:text-blue-400">Next.js</span>
+                    <div className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <i className="fas fa-external-link-alt text-xs text-blue-500"></i>
+                    </div>
+                  </div>
+                  <div className="tool-tech flex items-center gap-3 p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 transition-all duration-300 hover:border-blue-300 dark:hover:border-blue-600 hover:shadow-lg hover:scale-105 cursor-pointer group">
+                    <i className="fab fa-react text-cyan-500 text-lg transition-transform duration-300 group-hover:rotate-180"></i>
+                    <span className="text-sm font-medium transition-colors duration-300 group-hover:text-blue-600 dark:group-hover:text-blue-400">React Native</span>
+                    <div className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <i className="fas fa-external-link-alt text-xs text-blue-500"></i>
+                    </div>
+                  </div>
                 </div>
               </div>
-            ))}
+
+              {/* Backend Technologies */}
+              <div className="space-y-4 group/category">
+                <h3 className="text-sm font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wide flex items-center gap-2 transition-all duration-300 group-hover/category:text-green-500 dark:group-hover/category:text-green-400">
+                  <i className="fas fa-server text-green-500 transition-transform duration-300 group-hover/category:bounce"></i>
+                  Backend
+                </h3>
+                <div className="space-y-2">
+                  <div className="tool-tech flex items-center gap-3 p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 transition-all duration-300 hover:border-green-300 dark:hover:border-green-600 hover:shadow-lg hover:scale-105 cursor-pointer group">
+                    <i className="fab fa-node text-green-600 text-lg transition-transform duration-300 group-hover:scale-125"></i>
+                    <span className="text-sm font-medium transition-colors duration-300 group-hover:text-green-600 dark:group-hover:text-green-400">Node.js</span>
+                    <div className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <i className="fas fa-external-link-alt text-xs text-green-500"></i>
+                    </div>
+                  </div>
+                  <div className="tool-tech flex items-center gap-3 p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 transition-all duration-300 hover:border-green-300 dark:hover:border-green-600 hover:shadow-lg hover:scale-105 cursor-pointer group">
+                    <i className="fab fa-js text-blue-600 text-lg transition-transform duration-300 group-hover:scale-125"></i>
+                    <span className="text-sm font-medium transition-colors duration-300 group-hover:text-green-600 dark:group-hover:text-green-400">TypeScript</span>
+                    <div className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <i className="fas fa-external-link-alt text-xs text-green-500"></i>
+                    </div>
+                  </div>
+                  <div className="tool-tech flex items-center gap-3 p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 transition-all duration-300 hover:border-green-300 dark:hover:border-green-600 hover:shadow-lg hover:scale-105 cursor-pointer group">
+                    <i className="fab fa-js text-yellow-500 text-lg transition-transform duration-300 group-hover:scale-125"></i>
+                    <span className="text-sm font-medium transition-colors duration-300 group-hover:text-green-600 dark:group-hover:text-green-400">JavaScript</span>
+                    <div className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <i className="fas fa-external-link-alt text-xs text-green-500"></i>
+                    </div>
+                  </div>
+                  <div className="tool-tech flex items-center gap-3 p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 transition-all duration-300 hover:border-green-300 dark:hover:border-green-600 hover:shadow-lg hover:scale-105 cursor-pointer group">
+                    <i className="fab fa-python text-yellow-600 text-lg transition-transform duration-300 group-hover:scale-125"></i>
+                    <span className="text-sm font-medium transition-colors duration-300 group-hover:text-green-600 dark:group-hover:text-green-400">Python</span>
+                    <div className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <i className="fas fa-external-link-alt text-xs text-green-500"></i>
+                    </div>
+                  </div>
+                  <div className="tool-tech flex items-center gap-3 p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 transition-all duration-300 hover:border-green-300 dark:hover:border-green-600 hover:shadow-lg hover:scale-105 cursor-pointer group">
+                    <i className="fas fa-hashtag text-purple-600 text-lg transition-transform duration-300 group-hover:scale-125"></i>
+                    <span className="text-sm font-medium transition-colors duration-300 group-hover:text-green-600 dark:group-hover:text-green-400">C#</span>
+                    <div className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <i className="fas fa-external-link-alt text-xs text-green-500"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Styling & Design */}
+              <div className="space-y-4 group/category">
+                <h3 className="text-sm font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wide flex items-center gap-2 transition-all duration-300 group-hover/category:text-purple-500 dark:group-hover/category:text-purple-400">
+                  <i className="fas fa-paint-brush text-purple-500 transition-transform duration-300 group-hover/category:rotate-12"></i>
+                  Styling & Design
+                </h3>
+                <div className="space-y-2">
+                  <div className="tool-tech flex items-center gap-3 p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 transition-all duration-300 hover:border-purple-300 dark:hover:border-purple-600 hover:shadow-lg hover:scale-105 cursor-pointer group">
+                    <i className="fab fa-css3 text-cyan-500 text-lg transition-transform duration-300 group-hover:rotate-12"></i>
+                    <span className="text-sm font-medium transition-colors duration-300 group-hover:text-purple-600 dark:group-hover:text-purple-400">Tailwind CSS</span>
+                    <div className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <i className="fas fa-external-link-alt text-xs text-purple-500"></i>
+                    </div>
+                  </div>
+                  <div className="tool-tech flex items-center gap-3 p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 transition-all duration-300 hover:border-purple-300 dark:hover:border-purple-600 hover:shadow-lg hover:scale-105 cursor-pointer group">
+                    <i className="fab fa-bootstrap text-purple-600 text-lg transition-transform duration-300 group-hover:rotate-12"></i>
+                    <span className="text-sm font-medium transition-colors duration-300 group-hover:text-purple-600 dark:group-hover:text-purple-400">Bootstrap</span>
+                    <div className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <i className="fas fa-external-link-alt text-xs text-purple-500"></i>
+                    </div>
+                  </div>
+                  <div className="tool-tech flex items-center gap-3 p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 transition-all duration-300 hover:border-purple-300 dark:hover:border-purple-600 hover:shadow-lg hover:scale-105 cursor-pointer group">
+                    <i className="fas fa-layer-group text-gray-800 dark:text-gray-200 text-lg transition-transform duration-300 group-hover:rotate-12"></i>
+                    <span className="text-sm font-medium transition-colors duration-300 group-hover:text-purple-600 dark:group-hover:text-purple-400">ShadCN</span>
+                    <div className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <i className="fas fa-external-link-alt text-xs text-purple-500"></i>
+                    </div>
+                  </div>
+                  <div className="tool-tech flex items-center gap-3 p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 transition-all duration-300 hover:border-purple-300 dark:hover:border-purple-600 hover:shadow-lg hover:scale-105 cursor-pointer group">
+                    <i className="fab fa-rockrms text-cyan-500 text-lg transition-transform duration-300 group-hover:rotate-12"></i>
+                    <span className="text-sm font-medium transition-colors duration-300 group-hover:text-purple-600 dark:group-hover:text-purple-400">Flowbite</span>
+                    <div className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <i className="fas fa-external-link-alt text-xs text-purple-500"></i>
+                    </div>
+                  </div>
+                  <div className="tool-tech flex items-center gap-3 p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 transition-all duration-300 hover:border-purple-300 dark:hover:border-purple-600 hover:shadow-lg hover:scale-105 cursor-pointer group">
+                    <i className="fas fa-paint-brush text-purple-600 text-lg transition-transform duration-300 group-hover:rotate-12"></i>
+                    <span className="text-sm font-medium transition-colors duration-300 group-hover:text-purple-600 dark:group-hover:text-purple-400">Photoshop</span>
+                    <div className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <i className="fas fa-external-link-alt text-xs text-purple-500"></i>
+                    </div>
+                  </div>
+                  <div className="tool-tech flex items-center gap-3 p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 transition-all duration-300 hover:border-purple-300 dark:hover:border-purple-600 hover:shadow-lg hover:scale-105 cursor-pointer group">
+                    <i className="fab fa-figma text-purple-500 text-lg transition-transform duration-300 group-hover:rotate-12"></i>
+                    <span className="text-sm font-medium transition-colors duration-300 group-hover:text-purple-600 dark:group-hover:text-purple-400">Figma</span>
+                    <div className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <i className="fas fa-external-link-alt text-xs text-purple-500"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Tools & Others */}
+              <div className="space-y-4 group/category">
+                <h3 className="text-sm font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wide flex items-center gap-2 transition-all duration-300 group-hover/category:text-orange-500 dark:group-hover/category:text-orange-400">
+                  <i className="fas fa-wrench text-orange-500 transition-transform duration-300 group-hover/category:rotate-45"></i>
+                  Tools & Others
+                </h3>
+                <div className="space-y-2">
+                  <div className="tool-tech flex items-center gap-3 p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 transition-all duration-300 hover:border-orange-300 dark:hover:border-orange-600 hover:shadow-lg hover:scale-105 cursor-pointer group">
+                    <i className="fab fa-git-alt text-orange-600 text-lg transition-transform duration-300 group-hover:rotate-12"></i>
+                    <span className="text-sm font-medium transition-colors duration-300 group-hover:text-orange-600 dark:group-hover:text-orange-400">Git</span>
+                    <div className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <i className="fas fa-external-link-alt text-xs text-orange-500"></i>
+                    </div>
+                  </div>
+                  <div className="tool-tech flex items-center gap-3 p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 transition-all duration-300 hover:border-orange-300 dark:hover:border-orange-600 hover:shadow-lg hover:scale-105 cursor-pointer group">
+                    <i className="fas fa-bolt text-yellow-500 text-lg transition-transform duration-300 group-hover:animate-pulse"></i>
+                    <span className="text-sm font-medium transition-colors duration-300 group-hover:text-orange-600 dark:group-hover:text-orange-400">Vite</span>
+                    <div className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <i className="fas fa-external-link-alt text-xs text-orange-500"></i>
+                    </div>
+                  </div>
+                  <div className="tool-tech flex items-center gap-3 p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 transition-all duration-300 hover:border-orange-300 dark:hover:border-orange-600 hover:shadow-lg hover:scale-105 cursor-pointer group">
+                    <i className="fas fa-cube text-blue-600 text-lg transition-transform duration-300 group-hover:rotate-12"></i>
+                    <span className="text-sm font-medium transition-colors duration-300 group-hover:text-orange-600 dark:group-hover:text-orange-400">Webpack</span>
+                    <div className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <i className="fas fa-external-link-alt text-xs text-orange-500"></i>
+                    </div>
+                  </div>
+                  <div className="tool-tech flex items-center gap-3 p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 transition-all duration-300 hover:border-orange-300 dark:hover:border-orange-600 hover:shadow-lg hover:scale-105 cursor-pointer group">
+                    <i className="fab fa-html5 text-orange-500 text-lg transition-transform duration-300 group-hover:rotate-12"></i>
+                    <span className="text-sm font-medium transition-colors duration-300 group-hover:text-orange-600 dark:group-hover:text-orange-400">HTML5</span>
+                    <div className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <i className="fas fa-external-link-alt text-xs text-orange-500"></i>
+                    </div>
+                  </div>
+                  <div className="tool-tech flex items-center gap-3 p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 transition-all duration-300 hover:border-orange-300 dark:hover:border-orange-600 hover:shadow-lg hover:scale-105 cursor-pointer group">
+                    <i className="fab fa-css3 text-blue-500 text-lg transition-transform duration-300 group-hover:rotate-12"></i>
+                    <span className="text-sm font-medium transition-colors duration-300 group-hover:text-orange-600 dark:group-hover:text-orange-400">CSS3</span>
+                    <div className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <i className="fas fa-external-link-alt text-xs text-orange-500"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Projects Section - Modern and elegant cards with refined glow */}
-      <section id="projects" className="py-24 relative">
-        <div className="container mx-auto px-4" data-aos="fade-up">
-          <div className="text-center mb-16">
-            <div className="inline-block px-3 py-1 mb-4 bg-primary/10 backdrop-blur-sm text-primary rounded-full text-sm font-medium">
-              My Work
+      {/* Projects Section - Clean & Minimal */}
+      <section id="projects" className="py-24 pb-32 bg-gray-50 dark:bg-gray-800/50">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16" data-aos="fade-up">
+            <div className="mb-6">
+              <span className="inline-block px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full text-sm font-medium">
+                Featured Work
+              </span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-              Featured Projects
+            <h2 className="text-4xl md:text-5xl font-light text-gray-900 dark:text-white mb-6">
+              Recent Projects
             </h2>
-            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-              A selection of my recent work and personal projects
+            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+              A showcase of my latest web development and design work
             </p>
           </div>
 
-          {/* Projects Grid with refined glow */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {/* Project Card 1 */}
-            <div
-              className="group relative"
-              data-aos="fade-up"
-              data-aos-delay="100"
-            >
-              {/* Refined subtle glow effect */}
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/30 to-accent/30 rounded-xl blur-sm opacity-0 group-hover:opacity-60 transition-all duration-500 ease-out"></div>
-              <div className="relative bg-base-300/80 backdrop-blur-md rounded-xl overflow-hidden shadow-lg border border-base-100/20 h-full transition-all duration-300 group-hover:shadow-xl">
+          {/* Mobile Projects */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto mb-8">
+            {/* Revvlane Mobile App */}
+            <div className="group" data-aos="fade-up" data-aos-delay="50" data-aos-duration="400" >
+              <div className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700 transition-all duration-300 hover:shadow-lg">
+                <div className="relative overflow-hidden">
+                  {/* Mobile Phone Mockup */}
+                  <div className="flex justify-center py-8">
+                    <div className="relative">
+                      <div className="bg-[#2a2a2a] rounded-[2.5rem] p-1 shadow-2xl">
+                        <div className="bg-black rounded-[1.8rem] overflow-hidden w-40 aspect-[9/19.5]">
+                          <img
+                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                            src={revvlane}
+                            alt="Revvlane mobile app"
+                          />
+                        </div>
+                      </div>
+                      {/* Home indicator */}
+                      <div className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-12 h-0.5 bg-white/30 rounded-full"></div>
+                    </div>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 text-xs rounded-full">
+                      Mobile App
+                    </span>
+                    <div className="flex gap-2">
+                      <a
+                        href="#"
+                        target="_blank"
+                        className="w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
+                      >
+                        <i className="fas fa-external-link-alt text-xs"></i>
+                      </a>
+                      <a
+                        href="#"
+                        target="_blank"
+                        className="w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
+                      >
+                        <i className="fab fa-github text-xs"></i>
+                      </a>
+                    </div>
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                    Revvlane
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                    A premium automotive social platform connecting car enthusiasts for meets, garage management, and showcasing vehicles with modern mobile design.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* WeTogether Web App */}
+            <div className="group" data-aos="fade-up" data-aos-delay="100" data-aos-duration="400" >
+              <div className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700 transition-all duration-300 hover:shadow-lg">
+                <div className="relative overflow-hidden">
+                  {/* Mobile Phone Mockup */}
+                  <div className="flex justify-center py-8">
+                    <div className="relative">
+                      <div className="bg-[#2a2a2a] rounded-[2.5rem] p-1 shadow-2xl">
+                        <div className="bg-black rounded-[1.8rem] overflow-hidden w-40 aspect-[9/19.5]">
+                          <img
+                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                            src={wetogether}
+                            alt="WeTogether web app"
+                          />
+                        </div>
+                      </div>
+                      {/* Home indicator */}
+                      <div className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-12 h-0.5 bg-white/30 rounded-full"></div>
+                    </div>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-xs rounded-full">
+                      Mobile App
+                    </span>
+                    <div className="flex gap-2">
+                      <a
+                        href="#"
+                        target="_blank"
+                        className="w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                      >
+                        <i className="fas fa-external-link-alt text-xs"></i>
+                      </a>
+                      <a
+                        href="#"
+                        target="_blank"
+                        className="w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                      >
+                        <i className="fab fa-github text-xs"></i>
+                      </a>
+                    </div>
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                    WeTogether
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                    A collaborative location-sharing platform enabling groups to set destinations, track members, and coordinate meetups with real-time navigation.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Desktop Projects */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+            {/* Spatepate */}
+            <div className="group" data-aos="fade-up" data-aos-delay="150" data-aos-duration="400" >
+              <div className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700 transition-all duration-300 hover:shadow-lg">
                 <div className="relative overflow-hidden">
                   <img
-                    className="w-full h-48 object-cover transition-transform duration-700 group-hover:scale-110"
+                    className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105"
                     src={spatepate}
-                    alt="Spatepate project screenshot"
+                    alt="Spatepate project"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
                 </div>
-
                 <div className="p-6">
-                  <div className="flex justify-between items-start mb-2">
-                    <span className="px-2 py-1 bg-primary/20 text-primary text-xs rounded-full">
-                      Programming Tutorials
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-xs rounded-full">
+                      React
                     </span>
-                  </div>
-
-                  <h3 className="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">
-                    Spatepate
-                  </h3>
-
-                  <p className="text-gray-400 text-sm mb-4">
-                    Comprehensive coding tutorials covering diverse programming
-                    languages, with both beginner-friendly and advanced content.
-                  </p>
-
-                  <div className="flex items-center justify-between mt-auto pt-2 border-t border-gray-700">
-                    <div className="flex space-x-3 text-accent">
+                    <div className="flex gap-2">
                       <a
                         href="https://pruthvz.github.io/spatepate/"
                         target="_blank"
-                        className="hover:text-primary transition-colors"
+                        className="w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                       >
-                        <i className="fas fa-globe"></i>
+                        <i className="fas fa-external-link-alt text-xs"></i>
                       </a>
                       <a
                         href="https://github.com/pruthvz/spatepate"
                         target="_blank"
-                        className="hover:text-primary transition-colors"
+                        className="w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                       >
-                        <i className="fas fa-code"></i>
+                        <i className="fab fa-github text-xs"></i>
                       </a>
                     </div>
-
-                    <div className="text-xs text-gray-500">
-                      <span className="inline-block px-2 py-1 bg-base-200 rounded-full text-gray-400">
-                        React
-                      </span>
-                    </div>
                   </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Project Card 2 */}
-            <div
-              className="group relative"
-              data-aos="fade-up"
-              data-aos-delay="200"
-            >
-              {/* Refined subtle glow effect */}
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/30 to-accent/30 rounded-xl blur-sm opacity-0 group-hover:opacity-60 transition-all duration-500 ease-out"></div>
-              <div className="relative bg-base-300/80 backdrop-blur-md rounded-xl overflow-hidden shadow-lg border border-base-100/20 h-full transition-all duration-300 group-hover:shadow-xl">
-                <div className="relative overflow-hidden">
-                  <img
-                    className="w-full h-48 object-cover transition-transform duration-700 group-hover:scale-110"
-                    src={oopsDev}
-                    alt="OoopsDev project screenshot"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                </div>
-
-                <div className="p-6">
-                  <div className="flex justify-between items-start mb-2">
-                    <span className="px-2 py-1 bg-primary/20 text-primary text-xs rounded-full">
-                      Developer Resources
-                    </span>
-                  </div>
-
-                  <h3 className="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">
-                    ooopsDev.com
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                    Spatepate
                   </h3>
-
-                  <p className="text-gray-400 text-sm mb-4">
-                    A collection of valuable resources for developers, spanning
-                    both front-end and back-end development tools and
-                    references.
+                  <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                    A comprehensive programming tutorial platform with interactive coding examples and beginner-friendly content.
                   </p>
-
-                  <div className="flex items-center justify-between mt-auto pt-2 border-t border-gray-700">
-                    <div className="flex space-x-3 text-accent">
-                      <a
-                        href="https://ooopsdev.com/#/"
-                        target="_blank"
-                        className="hover:text-primary transition-colors"
-                      >
-                        <i className="fas fa-globe"></i>
-                      </a>
-                      <a
-                        href="https://github.com/pruthvz/project-atlas"
-                        target="_blank"
-                        className="hover:text-primary transition-colors"
-                      >
-                        <i className="fas fa-code"></i>
-                      </a>
-                    </div>
-
-                    <div className="text-xs text-gray-500">
-                      <span className="inline-block px-2 py-1 bg-base-200 rounded-full text-gray-400">
-                        Vue
-                      </span>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Project Card 3 */}
-            <div
-              className="group relative"
-              data-aos="fade-up"
-              data-aos-delay="300"
-            >
-              {/* Refined subtle glow effect */}
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/30 to-accent/30 rounded-xl blur-sm opacity-0 group-hover:opacity-60 transition-all duration-500 ease-out"></div>
-              <div className="relative bg-base-300/80 backdrop-blur-md rounded-xl overflow-hidden shadow-lg border border-base-100/20 h-full transition-all duration-300 group-hover:shadow-xl">
+            {/* Project 4 */}
+            <div className="group" data-aos="fade-up" data-aos-delay="200" data-aos-duration="400" >
+              <div className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700 transition-all duration-300 hover:shadow-lg">
                 <div className="relative overflow-hidden">
                   <img
-                    className="w-full h-48 object-cover transition-transform duration-700 group-hover:scale-110"
+                    className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105"
+                    src={instabooth}
+                    alt="Instabooth project"
+                  />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
+                </div>
+                <div className="p-6">
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-xs rounded-full">
+                      React
+                    </span>
+                    <div className="flex gap-2">
+                      <a
+                        href="https://instabooth.netlify.app/"
+                        target="_blank"
+                        className="w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                      >
+                        <i className="fas fa-external-link-alt text-xs"></i>
+                      </a>
+                      <a
+                        href="https://github.com/pruthvz/photobooth"
+                        target="_blank"
+                        className="w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                      >
+                        <i className="fab fa-github text-xs"></i>
+                      </a>
+                    </div>
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                    Instabooth
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                    A free-to-use photobooth web application where users can capture 4 images, add decorative frames, draw within frames, and download the final collage as a PNG.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Project 5 */}
+            <div className="group" data-aos="fade-up" data-aos-delay="250" data-aos-duration="400" >
+              <div className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700 transition-all duration-300 hover:shadow-lg">
+                <div className="relative overflow-hidden">
+                  <img
+                    className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105"
                     src={diu}
-                    alt="Diu Travels project screenshot"
+                    alt="Diu Travels project"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
                 </div>
-
                 <div className="p-6">
-                  <div className="flex justify-between items-start mb-2">
-                    <span className="px-2 py-1 bg-primary/20 text-primary text-xs rounded-full">
-                      Travel Website
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 text-xs rounded-full">
+                      Bootstrap
                     </span>
-                  </div>
-
-                  <h3 className="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">
-                    Diu Travels
-                  </h3>
-
-                  <p className="text-gray-400 text-sm mb-4">
-                    A static travel website showcasing popular destinations,
-                    created as my debut client project using Material Design
-                    Bootstrap.
-                  </p>
-
-                  <div className="flex items-center justify-between mt-auto pt-2 border-t border-gray-700">
-                    <div className="flex space-x-3 text-accent">
+                    <div className="flex gap-2">
                       <a
                         href="https://diutravels.com/"
                         target="_blank"
-                        className="hover:text-primary transition-colors"
+                        className="w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
                       >
-                        <i className="fas fa-globe"></i>
+                        <i className="fas fa-external-link-alt text-xs"></i>
                       </a>
                       <a
                         href="https://github.com/pruthvz/updatedTravelsite"
                         target="_blank"
-                        className="hover:text-primary transition-colors"
+                        className="w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
                       >
-                        <i className="fas fa-code"></i>
+                        <i className="fab fa-github text-xs"></i>
                       </a>
                     </div>
-
-                    <div className="text-xs text-gray-500">
-                      <span className="inline-block px-2 py-1 bg-base-200 rounded-full text-gray-400">
-                        Bootstrap
-                      </span>
-                    </div>
                   </div>
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                    Diu Travels
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                    A responsive travel website showcasing beautiful destinations with modern design and smooth user experience.
+                  </p>
                 </div>
               </div>
             </div>
 
-            {/* Project Card 4 */}
-            <div
-              className="group relative"
-              data-aos="fade-up"
-              data-aos-delay="400"
-            >
-              {/* Refined subtle glow effect */}
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/30 to-accent/30 rounded-xl blur-sm opacity-0 group-hover:opacity-60 transition-all duration-500 ease-out"></div>
-              <div className="relative bg-base-300/80 backdrop-blur-md rounded-xl overflow-hidden shadow-lg border border-base-100/20 h-full transition-all duration-300 group-hover:shadow-xl">
+            {/* Project 6 */}
+            <div className="group" data-aos="fade-up" data-aos-delay="300" data-aos-duration="400" >
+              <div className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700 transition-all duration-300 hover:shadow-lg">
                 <div className="relative overflow-hidden">
                   <img
-                    className="w-full h-48 object-cover transition-transform duration-700 group-hover:scale-110"
-                    src={projectwee}
-                    alt="Project Weee screenshot"
+                    className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105"
+                    src={crescent}
+                    alt="Crescent clothing brand"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
                 </div>
-
                 <div className="p-6">
-                  <div className="flex justify-between items-start mb-2">
-                    <span className="px-2 py-1 bg-primary/20 text-primary text-xs rounded-full">
-                      Next.js Project
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 text-xs rounded-full">
+                      Shopify
                     </span>
+                    <div className="flex gap-2">
+                      <a
+                        href="https://shopcrescent.uk/"
+                        target="_blank"
+                        className="w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
+                      >
+                        <i className="fas fa-external-link-alt text-xs"></i>
+                      </a>
+                      <a
+                        href="#private-business-project"
+                        target="_blank"
+                        className="w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
+                      >
+                        <i className="fas fa-lock text-xs"></i>
+                      </a>
+                    </div>
                   </div>
-
-                  <h3 className="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">
-                    Project Weee
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                    Crescent
                   </h3>
-
-                  <p className="text-gray-400 text-sm mb-4">
-                    An experimental project to understand the core concepts of
-                    Next.js before tackling larger projects with the framework.
+                  <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                    A clothing brand business founded in 2022 with my sister, specializing in premium hoodies, tracksuits, and streetwear.
                   </p>
-
-                  <div className="flex items-center justify-between mt-auto pt-2 border-t border-gray-700">
-                    <div className="flex space-x-3 text-accent">
-                      <a
-                        href="https://project-weee.vercel.app/"
-                        target="_blank"
-                        className="hover:text-primary transition-colors"
-                      >
-                        <i className="fas fa-globe"></i>
-                      </a>
-                      <a
-                        href="https://github.com/pruthvz/project-weee"
-                        target="_blank"
-                        className="hover:text-primary transition-colors"
-                      >
-                        <i className="fas fa-code"></i>
-                      </a>
-                    </div>
-
-                    <div className="text-xs text-gray-500">
-                      <span className="inline-block px-2 py-1 bg-base-200 rounded-full text-gray-400">
-                        Next.js
-                      </span>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* View All Projects Button with improved glow */}
-          <div className="flex justify-center mt-12">
+          {/* View All Projects Button */}
+          <div className="flex justify-center mt-12 mb-16" data-aos="fade-up" data-aos-delay="400" data-aos-duration="400" >
             <Link
               to="/projects"
-              className="group relative inline-flex items-center overflow-hidden rounded-full bg-primary hover:bg-primary/90 px-8 py-3 text-white focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2 transition-all duration-300"
-              data-aos="fade-up"
+              className="group inline-flex items-center gap-2 px-8 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-full font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg"
             >
-              <span className="absolute -end-full transition-all group-hover:end-4">
-                <i className="fas fa-arrow-right ml-2"></i>
-              </span>
-
-              <span className="text-sm font-medium transition-all group-hover:me-4">
-                View All Projects
-              </span>
+              <span>View All Projects</span>
+              <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
             </Link>
           </div>
         </div>

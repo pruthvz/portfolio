@@ -1,3 +1,6 @@
+import instabooth from "../assets/projectImg/booth.png";
+import crescent from "../assets/projectImg/crescent.png";
+import nisha from "../assets/projectImg/nisha.png";
 import verselet from "../assets/projectImg/verselet.png";
 import spate from "../assets/projectImg/spatepate.png";
 import oopsDev from "../assets/projectImg/oopsdev.png";
@@ -14,8 +17,94 @@ import spateagain from "../assets/projectImg/spate.png";
 import webpage from "../assets/projectImg/ionics-webpage.png";
 import flask from "../assets/projectImg/flasktodo.png";
 import reactloader from "../assets/projectImg/react-skeleton.png";
+// Revvlane screenshots
+import revvlane1 from "../assets/revvlane/img_7268.png";
+import revvlane2 from "../assets/revvlane/img_7269.png";
+import revvlane3 from "../assets/revvlane/img_7273.png";
+import revvlane4 from "../assets/revvlane/img_7274.png";
+import revvlane5 from "../assets/revvlane/img_7275.png";
+import revvlane6 from "../assets/revvlane/img_7278.png";
+// WeTogether screenshots
+import wetogether1 from "../assets/wetogether/navigation.png";
+import wetogether2 from "../assets/wetogether/group destination.png";
+import wetogether3 from "../assets/wetogether/user display.png";
+import wetogether4 from "../assets/wetogether/group.png";
+import wetogether5 from "../assets/wetogether/normal map.png";
+import wetogether6 from "../assets/wetogether/signup.png";
+
+// Mobile projects with multiple screenshots
+const mobileProjects = [
+  {
+    title: "Revvlane",
+    subTitle: "Automotive Social Platform",
+    desc: "A premium mobile application connecting car enthusiasts for meets, garage management, and showcasing vehicles with other people all inside a modern and minimal mobile app.",
+    screenshots: [revvlane1, revvlane2, revvlane3, revvlane4, revvlane5, revvlane6],
+    category: "Mobile",
+    github: "https://github.com/pruthvz",
+    website: "#coming-soon",
+    hash1: "#React Native/Node.js",
+    hash2: "#MongoDB",
+    hash4: "#Socket.io",
+    hash3: "#Social Platform/Car Meetups",
+    isMobile: true,
+  },
+  {
+    title: "WeTogether",
+    subTitle: "Location Sharing Platform",
+    desc: "A collaborative mobile platform enabling groups to set destinations, track members, and coordinate meetups with real-time navigation.",
+    screenshots: [wetogether1, wetogether2, wetogether3, wetogether4, wetogether5, wetogether6],
+    category: "Mobile",
+    github: "https://github.com/pruthvz",
+    website: "#coming-soon",
+    hash1: "#React Native/Node.js",
+    hash2: "#Mapbox SDK",
+    hash3: "#Socket.io Real-time",
+    hash4: "#Real-time & Group Navigation",
+    isMobile: true,
+  },
+];
 
 const myProjects = [
+  {
+    title: "Instabooth",
+    subTitle: "Online Photobooth Web App",
+    desc: "A free-to-use photobooth web application where users can capture 4 images, add decorative frames, draw within frames, and download the final collage as a PNG. Perfect for creating instant booth-style photos with filters and real-time camera effects.",
+    img: instabooth,
+    imgAlt: "Instabooth photobooth app",
+    github: "https://github.com/pruthvz/photobooth",
+    website: "https://instabooth.netlify.app/",
+    hash1: "#React.js",
+    hash2: "#Vite",
+    hash3: "#TailwindCSS",
+    margin: "mb-8",
+  },
+  {
+    title: "Crescent",
+    subTitle: "Clothing Brand E-Commerce",
+    desc: "A clothing brand business founded in 2022 with my sister, specializing in premium hoodies, tracksuits, and streetwear. I designed the entire Shopify website from frontend layout to backend app integrations, managing inventory updates and ensuring smooth user experience for our growing customer base.",
+    img: crescent,
+    imgAlt: "Crescent clothing brand Shopify website",
+    github: "#private-business-project",
+    website: "https://shopcrescent.uk/",
+    hash1: "#Shopify",
+    hash2: "#E-Commerce Design",
+    hash3: "#Frontend/Backend Integration",
+    hash4: "#Inventory Management",
+    margin: "mb-8",
+  },
+  {
+    title: "Nisha Fashion Portfolio",
+    subTitle: "Client Portfolio Website",
+    desc: "A professional portfolio website built for a fashion design student client. Features an elegant gallery showcasing their work progression from university projects to final outcomes, with optimized image lazy loading for smooth performance despite extensive imagery.",
+    img: nisha,
+    imgAlt: "Nisha fashion portfolio website",
+    github: "#private-client-project",
+    website: "https://nisha.page/",
+    hash1: "#React.js",
+    hash2: "#CSS",
+    hash3: "#Image Lazy Loading",
+    hash4: "#Responsive Design",
+  },
   {
     title: "Verselet",
     subTitle: "Learning programming website",
@@ -292,6 +381,7 @@ const languages = [
 
 const internalData = {
   myProjects,
+  mobileProjects,
   languages,
 };
 

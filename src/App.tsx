@@ -1,4 +1,4 @@
-import { HashRouter as Router, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 import Navbar from "./components/Navbar/Navbar";
@@ -7,7 +7,17 @@ import About from "./components/Pages/About";
 import NotFound from "./components/Pages/NotFound";
 import Projects from "./components/Pages/Projects";
 import Footer from "./components/Footer/Footer";
-import Resume from "./components/Pages/Resume";
+
+// Component to handle scroll to top on route change
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
 
 function App() {
   const [showToast, setShowToast] = useState(false);
@@ -48,12 +58,12 @@ function App() {
   return (
     <>
       <Router>
+        <ScrollToTop />
         <Navbar />
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/about" element={<About />} />
           <Route path="/projects" element={<Projects />} />
-          <Route path="/resume" element={<Resume />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
@@ -85,7 +95,7 @@ function App() {
               <div className="ml-3 pr-6">
                 <h3 className="text-sm font-medium mb-1">What's New</h3>
                 <p className="text-xs text-gray-300 mb-2">
-                  Currently working on Revvlane, and crescent launch. Check out
+                  Currently working on WeTogether - Real-time Group Navigation App, and crescent launch. Check out
                   our new upcoming{" "}
                   <a
                     href="https://shopcrescent.uk/password"
@@ -127,7 +137,7 @@ function App() {
         {/* Scroll to top button */}
         <button
           onClick={scrollToTop}
-          className={`fixed right-4 bottom-24 z-40 w-10 h-10 rounded-full bg-indigo-500 text-white shadow-lg flex items-center justify-center transform transition-all duration-300 hover:bg-indigo-600 hover:scale-110 ${
+          className={`fixed right-6 bottom-6 z-40 w-12 h-12 rounded-full bg-white dark:bg-gray-800 text-gray-900 dark:text-white shadow-lg border border-gray-200 dark:border-gray-700 flex items-center justify-center transform transition-all duration-300 hover:scale-105 hover:shadow-xl ${
             showScrollTop
               ? "translate-y-0 opacity-100"
               : "translate-y-10 opacity-0 pointer-events-none"

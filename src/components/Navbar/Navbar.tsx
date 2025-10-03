@@ -28,130 +28,106 @@ function Navbar() {
   };
 
   return (
-    <div className="fixed top-0 w-full z-50">
-      {/* Announcement Banner */}
-      {/* <div className="bg-gradient-to-r from-primary/90 to-accent/90 backdrop-blur-sm text-white py-2 px-4 text-center text-sm relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4xIj48cGF0aCBkPSJNMzYgMzRjMC0yLjIxIDEuNzktNCA0LTRzNCAxLjc5IDQgNC0xLjc5IDQtNCA0LTQtMS43OS00LTR6TTE2IDI0YzAtMi4yMSAxLjc5LTQgNC00czQgMS43OSA0IDQtMS43OSA0LTQgNC00LTEuNzktNC00eiIvPjwvZz48L2c+PC9zdmc+')] opacity-10"></div>
-        <div className="flex items-center justify-center">
-          <i className="fas fa-info-circle mr-2"></i>
-          <span>
-            Currently working on Revvlane, and crescent launch. Check out our
-            new upcoming{" "}
-            <a
-              href="#"
-              className="underline font-medium hover:text-white/80 transition-colors"
-            >
-              clothing launch
-            </a>
-            .
-          </span>
-        </div>
-      </div> */}
-
+    <nav className="fixed top-0 w-full z-50">
       {/* Main Navbar */}
       <div
         className={`transition-all duration-300 ${
           isScrolled
-            ? "bg-base-300/80 backdrop-blur-lg shadow-lg"
+            ? "bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-sm border-b border-gray-200/50 dark:border-gray-700/50"
             : "bg-transparent"
         }`}
       >
-        <div className="container mx-auto">
-          <div className="navbar py-3 px-4">
+        <div className="container mx-auto px-6">
+          <div className="flex items-center justify-between h-16">
             {/* Logo/Brand */}
-            <div className="navbar-start">
+            <div className="flex-shrink-0">
               <Link
                 to="/"
-                className="text-xl font-medium tracking-tight text-white hover:text-primary transition-colors"
+                className="text-lg font-medium text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
               >
-                pruthvi mohanlal
+                Pruthvi Mohanlal
               </Link>
             </div>
 
             {/* Desktop Navigation Links */}
-            <div className="navbar-center hidden lg:flex">
-              <div className="bg-base-300/30 backdrop-blur-md rounded-full p-1">
-                <ul className="flex space-x-1">
-                  <li>
-                    <Link
-                      to="/"
-                      className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
-                        isActive("/")
-                          ? "bg-primary text-white shadow-md"
-                          : "text-gray-300 hover:text-white"
-                      }`}
-                    >
-                      Home
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="/projects"
-                      className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
-                        isActive("/projects")
-                          ? "bg-primary text-white shadow-md"
-                          : "text-gray-300 hover:text-white"
-                      }`}
-                    >
-                      Projects
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="/about"
-                      className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
-                        isActive("/about")
-                          ? "bg-primary text-white shadow-md"
-                          : "text-gray-300 hover:text-white"
-                      }`}
-                    >
-                      About
-                    </Link>
-                  </li>
-                </ul>
-              </div>
+            <div className="hidden md:flex items-center space-x-8">
+              <Link
+                to="/"
+                className={`text-sm font-medium transition-colors ${
+                  isActive("/")
+                    ? "text-blue-600 dark:text-blue-400"
+                    : "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+                }`}
+              >
+                Home
+              </Link>
+              <Link
+                to="/about"
+                className={`text-sm font-medium transition-colors ${
+                  isActive("/about")
+                    ? "text-blue-600 dark:text-blue-400"
+                    : "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+                }`}
+              >
+                About
+              </Link>
+              <Link
+                to="/projects"
+                className={`text-sm font-medium transition-colors ${
+                  isActive("/projects")
+                    ? "text-blue-600 dark:text-blue-400"
+                    : "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+                }`}
+              >
+                Projects
+              </Link>
             </div>
 
-            {/* Right Side - Social Links & Contact */}
-            <div className="navbar-end">
-              <div className="hidden md:flex items-center space-x-4 mr-4">
+            {/* Right Side - Social Links, Contact Button & Mobile Menu */}
+            <div className="flex items-center space-x-3">
+              {/* Social Links */}
+              <div className="hidden md:flex items-center space-x-2">
                 <a
                   href="https://github.com/pruthvz"
                   target="_blank"
-                  className="text-gray-300 hover:text-primary transition-colors"
+                  className="w-8 h-8 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:scale-110 transition-all duration-300"
                   aria-label="GitHub"
                 >
-                  <i className="fab fa-github text-lg"></i>
+                  <i className="fab fa-github text-sm"></i>
                 </a>
                 <a
                   href="https://www.linkedin.com/in/pruthvi-mohanlal-b40602190/"
                   target="_blank"
-                  className="text-gray-300 hover:text-primary transition-colors"
+                  className="w-8 h-8 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:scale-110 transition-all duration-300"
                   aria-label="LinkedIn"
                 >
-                  <i className="fab fa-linkedin-in text-lg"></i>
+                  <i className="fab fa-linkedin-in text-sm"></i>
                 </a>
               </div>
-
+              
               <button
                 onClick={() => {
                   window.location.href = "mailto:pruthvimohanlal10@gmail.com";
                 }}
-                className="btn btn-primary btn-sm gap-2 text-white shadow-lg hover:shadow-primary/30 transition-all"
+                className="hidden sm:inline-flex items-center px-4 py-2 bg-gray-900 dark:bg-white text-white dark:text-gray-900 text-sm font-medium rounded-full hover:scale-105 transition-all duration-300 hover:shadow-lg"
               >
-                <i className="fas fa-paper-plane text-xs"></i> Contact me
+                Get in Touch
               </button>
 
               {/* Mobile Menu Toggle */}
               <button
-                className="lg:hidden ml-4 text-gray-300 hover:text-white transition-colors"
+                className="md:hidden p-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 aria-label="Toggle mobile menu"
               >
                 {isMobileMenuOpen ? (
-                  <i className="fas fa-times text-lg"></i>
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
                 ) : (
-                  <i className="fas fa-bars text-lg"></i>
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
                 )}
               </button>
             </div>
@@ -161,80 +137,88 @@ function Navbar() {
 
       {/* Mobile Navigation Menu */}
       <div
-        className={`lg:hidden bg-base-300/95 backdrop-blur-lg overflow-hidden transition-all duration-300 ease-in-out ${
-          isMobileMenuOpen ? "max-h-60" : "max-h-0"
+        className={`md:hidden bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 overflow-hidden transition-all duration-300 ease-in-out ${
+          isMobileMenuOpen ? "max-h-64" : "max-h-0"
         }`}
       >
-        <div className="container mx-auto px-4 py-3">
-          <ul className="space-y-2">
-            <li>
-              <Link
-                to="/"
-                className={`block px-4 py-2 rounded-lg transition-colors ${
-                  isActive("/")
-                    ? "bg-primary/20 text-primary"
-                    : "text-gray-300 hover:bg-base-200/50 hover:text-white"
-                }`}
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/projects"
-                className={`block px-4 py-2 rounded-lg transition-colors ${
-                  isActive("/projects")
-                    ? "bg-primary/20 text-primary"
-                    : "text-gray-300 hover:bg-base-200/50 hover:text-white"
-                }`}
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Projects
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/about"
-                className={`block px-4 py-2 rounded-lg transition-colors ${
-                  isActive("/about")
-                    ? "bg-primary/20 text-primary"
-                    : "text-gray-300 hover:bg-base-200/50 hover:text-white"
-                }`}
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                About
-              </Link>
-            </li>
-          </ul>
-
+        <div className="px-6 py-4 space-y-4">
+          <Link
+            to="/"
+            className={`block text-sm font-medium transition-colors ${
+              isActive("/")
+                ? "text-blue-600 dark:text-blue-400"
+                : "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+            }`}
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            Home
+          </Link>
+          <Link
+            to="/about"
+            className={`block text-sm font-medium transition-colors ${
+              isActive("/about")
+                ? "text-blue-600 dark:text-blue-400"
+                : "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+            }`}
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            About
+          </Link>
+          <Link
+            to="/projects"
+            className={`block text-sm font-medium transition-colors ${
+              isActive("/projects")
+                ? "text-blue-600 dark:text-blue-400"
+                : "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+            }`}
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            Projects
+          </Link>
+          
           {/* Mobile Social Links */}
-          <div className="flex items-center space-x-4 mt-4 px-4 py-2 border-t border-gray-700/50">
+          <div className="flex items-center justify-center space-x-4 py-4">
             <a
               href="https://github.com/pruthvz"
               target="_blank"
-              className="text-gray-300 hover:text-primary transition-colors"
+              className="w-10 h-10 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:scale-110 transition-all duration-300"
+              aria-label="GitHub"
+              onClick={() => setIsMobileMenuOpen(false)}
             >
               <i className="fab fa-github"></i>
             </a>
             <a
               href="https://www.linkedin.com/in/pruthvi-mohanlal-b40602190/"
               target="_blank"
-              className="text-gray-300 hover:text-primary transition-colors"
+              className="w-10 h-10 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:scale-110 transition-all duration-300"
+              aria-label="LinkedIn"
+              onClick={() => setIsMobileMenuOpen(false)}
             >
               <i className="fab fa-linkedin-in"></i>
             </a>
             <a
-              href="https://twitter.com/justpruthvi"
-              target="_blank"
-              className="text-gray-300 hover:text-primary transition-colors"
+              href="mailto:pruthvimohanlal10@gmail.com"
+              className="w-10 h-10 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:scale-110 transition-all duration-300"
+              aria-label="Email"
+              onClick={() => setIsMobileMenuOpen(false)}
             >
-              <i className="fab fa-twitter"></i>
+              <i className="fas fa-envelope"></i>
             </a>
           </div>
+          
+          {/* Mobile Contact Button */}
+          <button
+            onClick={() => {
+              window.location.href = "mailto:pruthvimohanlal10@gmail.com";
+              setIsMobileMenuOpen(false);
+            }}
+            className="w-full mt-4 px-4 py-2 bg-gray-900 dark:bg-white text-white dark:text-gray-900 text-sm font-medium rounded-full hover:scale-105 transition-all duration-300"
+          >
+            Get in Touch
+          </button>
         </div>
       </div>
-    </div>
+    </nav>
   );
 }
 

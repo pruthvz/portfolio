@@ -1,155 +1,82 @@
-import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function NotFound() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const headerRef = useRef<HTMLDivElement>(null);
-
-  // Handle mouse movement for the interactive background
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      const header = headerRef.current;
-      if (!header) return;
-
-      const rect = header.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-
-      setMousePosition({ x, y });
-    };
-
-    document.addEventListener("mousemove", handleMouseMove);
-    return () => {
-      document.removeEventListener("mousemove", handleMouseMove);
-    };
+    document.title = "404 - Pruthvi Mohanlal";
   }, []);
-
   return (
-    <div className="bg-gradient-to-b from-base-300 to-base-100 dark:from-gray-900 dark:to-black text-gray-100 min-h-screen flex flex-col justify-center items-center relative">
-      {/* Interactive Background */}
-      <div ref={headerRef} className="absolute inset-0 overflow-hidden">
-        <div
-          className="absolute w-96 h-96 bg-indigo-500/10 rounded-full filter blur-3xl transition-all duration-300 ease-out"
-          style={{
-            top: mousePosition.y * 0.05 - 40,
-            left: mousePosition.x * 0.05 - 40,
-            transform: `translate(${mousePosition.x * -0.02}px, ${
-              mousePosition.y * -0.02
-            }px)`,
-            opacity: 0.7,
-          }}
-        ></div>
-        <div
-          className="absolute w-80 h-80 bg-primary/10 rounded-full filter blur-3xl transition-all duration-500 ease-out"
-          style={{
-            bottom: mousePosition.y * -0.03 + 100,
-            right: mousePosition.x * -0.03 + 100,
-            transform: `translate(${mousePosition.x * 0.01}px, ${
-              mousePosition.y * 0.02
-            }px)`,
-            opacity: 0.6,
-          }}
-        ></div>
-      </div>
-
-      <div className="container mx-auto px-4 z-10 text-center">
+    <div className="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen flex flex-col justify-center items-center">
+      <div className="container mx-auto px-6 text-center">
         {/* 404 Content */}
-        <div data-aos="fade-up" data-aos-duration="1000">
-          <div className="glitch-container relative inline-block mb-8">
-            <h1 className="text-9xl font-bold tracking-tighter text-white opacity-80">
-              404
-            </h1>
-            <div className="absolute inset-0 text-9xl font-bold tracking-tighter text-indigo-500 opacity-50 glitch-1">
-              404
-            </div>
-            <div className="absolute inset-0 text-9xl font-bold tracking-tighter text-primary opacity-50 glitch-2">
-              404
-            </div>
+        <div className="max-w-2xl mx-auto">
+          <div className="mb-8" data-aos="fade-up">
+            <span className="inline-block px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full text-sm font-medium">
+            You ran into a wall
+            </span>
           </div>
-
-          <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-indigo-600 mb-6">
+          
+          <h1 className="text-8xl md:text-9xl font-light text-gray-900 dark:text-white mb-6" data-aos="fade-up" data-aos-delay="100">
+            404
+          </h1>
+          
+          <h2 className="text-3xl md:text-4xl font-light text-gray-900 dark:text-white mb-6" data-aos="fade-up" data-aos-delay="200">
             Page Not Found
           </h2>
-          <p className="text-xl text-gray-300 max-w-2xl mx-auto mb-10">
-            Oops! The page you are looking for might have been removed, had its
-            name changed, or is temporarily unavailable.
+          
+          <p className="text-xl text-gray-600 dark:text-gray-400 mb-12 max-w-lg mx-auto" data-aos="fade-up" data-aos-delay="300">
+            The page you're looking for doesn't exist or has been moved. 
+            Let's get you back on track.
           </p>
 
-          {/* Mock Terminal */}
-          <div className="mockup-code bg-base-300/50 backdrop-blur-lg shadow-lg mx-auto mb-12 text-left max-w-md">
-            <pre data-prefix="$" className="text-warning font-mono">
-              <code>Error: Page not found (404)</code>
-            </pre>
-            <pre data-prefix=">" className="text-error font-mono">
-              <code>Path could not be located in the site directory</code>
-            </pre>
-            <pre data-prefix="$" className="text-success font-mono">
-              <code>Suggested: return to homepage</code>
-            </pre>
-          </div>
-
-          <div
-            className="flex flex-wrap gap-4 justify-center"
-            data-aos="fade-up"
-            data-aos-delay="200"
-          >
+          {/* Navigation Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center" data-aos="fade-up" data-aos-delay="400">
             <Link
               to="/"
-              className="inline-flex items-center gap-2 bg-indigo-500 hover:bg-indigo-600 text-white font-medium px-6 py-3 rounded-lg shadow-lg hover:shadow-indigo-500/20 transition-all duration-300 group"
+              className="inline-flex items-center justify-center px-8 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-full font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg"
             >
-              <span>Return Home</span>
-              <i className="fas fa-home transform group-hover:translate-x-1 transition-transform"></i>
+              <span>Go Home</span>
+              <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+              </svg>
             </Link>
+            
             <Link
               to="/projects"
-              className="inline-flex items-center gap-2 bg-base-200/80 hover:bg-base-300 text-white font-medium px-6 py-3 rounded-lg shadow-lg transition-all duration-300 group border border-white/10"
+              className="inline-flex items-center justify-center px-8 py-3 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white rounded-full font-medium transition-all duration-300 hover:bg-gray-100 dark:hover:bg-gray-800"
             >
               <span>View Projects</span>
-              <i className="fas fa-project-diagram transform group-hover:translate-x-1 transition-transform"></i>
+              <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+              </svg>
             </Link>
           </div>
-        </div>
-      </div>
 
-      {/* Styled Background Elements */}
-      <div className="absolute bottom-10 left-0 right-0 flex justify-center opacity-20">
-        <div className="grid grid-cols-12 gap-2">
-          {[...Array(12)].map((_, i) => (
-            <div
-              key={i}
-              className="h-1 md:h-2 bg-indigo-500 rounded-full"
-              style={{
-                width: `${Math.random() * 30 + 10}px`,
-                opacity: Math.random() * 0.5 + 0.3,
-              }}
-            ></div>
-          ))}
+          {/* Additional Help */}
+          <div className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-700" data-aos="fade-up" data-aos-delay="500">
+            <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
+              Need help finding something?
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center text-sm">
+              <Link
+                to="/about"
+                className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
+              >
+                About Me
+              </Link>
+              <span className="hidden sm:inline text-gray-300 dark:text-gray-600">•</span>
+              <button
+                onClick={() => {
+                  window.location.href = "mailto:pruthvimohanlal10@gmail.com";
+                }}
+                className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
+              >
+                Contact Me
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   );
 }
-
-// Add this CSS to your global styles or component-level CSS
-// .glitch-1 {
-//   animation: glitch-1 2s linear infinite alternate-reverse;
-// }
-// .glitch-2 {
-//   animation: glitch-2 3s linear infinite alternate-reverse;
-// }
-// @keyframes glitch-1 {
-//   0% { transform: translate(0); }
-//   20% { transform: translate(-2px, 1px); }
-//   40% { transform: translate(2px, -1px); }
-//   60% { transform: translate(-1px, -1px); }
-//   80% { transform: translate(1px, 1px); }
-//   100% { transform: translate(0); }
-// }
-// @keyframes glitch-2 {
-//   0% { transform: translate(0); }
-//   20% { transform: translate(2px, 1px); }
-//   40% { transform: translate(-1px, -2px); }
-//   60% { transform: translate(1px, 2px); }
-//   80% { transform: translate(-2px, -1px); }
-//   100% { transform: translate(0); }
-// }
