@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
+import pruthviImage from "../../assets/pruthvi.jpg";
 
 function About() {
   useEffect(() => {
@@ -22,7 +23,7 @@ function About() {
               >
                 <div className="relative">
                   <img
-                    src="/src/assets/pruthvi.jpg"
+                    src={pruthviImage}
                     alt="Pruthvi Mohanlal"
                     className="w-full max-w-md mx-auto rounded-2xl shadow-lg"
                   />
