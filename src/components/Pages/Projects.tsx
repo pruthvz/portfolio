@@ -159,10 +159,27 @@ function Projects() {
                     {project.desc}
                   </p>
 
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs text-gray-500 dark:text-gray-400">
-                      {project.hash1?.replace("#", "")}
-                    </span>
+                  <div className="flex flex-wrap gap-2">
+                    {project.hash1 && (
+                      <span className="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 text-xs rounded-md whitespace-nowrap">
+                        {project.hash1.replace("#", "")}
+                      </span>
+                    )}
+                    {project.hash2 && (
+                      <span className="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 text-xs rounded-md whitespace-nowrap">
+                        {project.hash2.replace("#", "")}
+                      </span>
+                    )}
+                    {project.hash3 && (
+                      <span className="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 text-xs rounded-md whitespace-nowrap">
+                        {project.hash3.replace("#", "")}
+                      </span>
+                    )}
+                    {project.hash4 && (
+                      <span className="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 text-xs rounded-md whitespace-nowrap">
+                        {project.hash4.replace("#", "")}
+                      </span>
+                    )}
                   </div>
                 </div>
               </div>

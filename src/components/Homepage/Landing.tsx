@@ -6,7 +6,7 @@ import wetogether from "../../assets/wetogether/navigation.png";
 import spatepate from "../../assets/projectImg/spatepate.png";
 import instabooth from "../../assets/projectImg/booth.png";
 import crescent from "../../assets/projectImg/crescent.png";
-import diu from "../../assets/projectImg/diutravels.png";
+import valocrate from "../../assets/projectImg/valocrate.png";
 import "./landing.css"; // Import the CSS file that contains animations
 
 
@@ -40,8 +40,10 @@ function Landing() {
             {/* Main heading */}
             <div className="mb-8" data-aos="fade-up" data-aos-delay="200">
               <h1 className="text-5xl md:text-7xl lg:text-8xl font-light tracking-tight mb-4">
-                <span className="block text-gray-900 dark:text-white">Hi, pruthvi here </span>
-                <span className="block text-gray-600 dark:text-gray-400 text-3xl pt-2">Code. Coffee. Repeat.</span>
+                <span className="block text-gray-900 dark:text-white">
+                  Hi, I'm <span className="font-medium bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent">pruthvi</span>
+                </span>
+                <span className="block text-gray-600 dark:text-gray-400 text-3xl pt-2 font-light">Code. Coffee. Repeat.</span>
               </h1>
             </div>
 
@@ -150,7 +152,9 @@ function Landing() {
                       <div className="text-white ml-8">
                         <span className="text-yellow-300">skills</span>: [
                       </div>
-                      <div className="text-white ml-12">"React", "Next.js", "TypeScript"</div>
+                      <div className="text-white ml-12">"React", "Next.js", "TypeScript",</div>
+                      <div className="text-white ml-12">"JavaScript", "Node.js", "Python",</div>
+                      <div className="text-white ml-12">"Tailwind CSS", "Git", "Vite"</div>
                       <div className="text-white ml-8">],</div>
                       <div className="text-white ml-8">
                         <span className="text-yellow-300">passion</span>: <span className="text-green-400">"Creating beautiful web experiences"</span>
@@ -296,6 +300,20 @@ function Landing() {
                   <div className="tool-tech flex items-center gap-3 p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 transition-all duration-300 hover:border-green-300 dark:hover:border-green-600 hover:shadow-lg hover:scale-105 cursor-pointer group">
                     <i className="fas fa-hashtag text-purple-600 text-lg transition-transform duration-300 group-hover:scale-125"></i>
                     <span className="text-sm font-medium transition-colors duration-300 group-hover:text-green-600 dark:group-hover:text-green-400">C#</span>
+                    <div className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <i className="fas fa-external-link-alt text-xs text-green-500"></i>
+                    </div>
+                  </div>
+                  <div className="tool-tech flex items-center gap-3 p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 transition-all duration-300 hover:border-green-300 dark:hover:border-green-600 hover:shadow-lg hover:scale-105 cursor-pointer group">
+                    <i className="fab fa-python text-green-600 text-lg transition-transform duration-300 group-hover:scale-125"></i>
+                    <span className="text-sm font-medium transition-colors duration-300 group-hover:text-green-600 dark:group-hover:text-green-400">Django</span>
+                    <div className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <i className="fas fa-external-link-alt text-xs text-green-500"></i>
+                    </div>
+                  </div>
+                  <div className="tool-tech flex items-center gap-3 p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 transition-all duration-300 hover:border-green-300 dark:hover:border-green-600 hover:shadow-lg hover:scale-105 cursor-pointer group">
+                    <i className="fas fa-database text-green-500 text-lg transition-transform duration-300 group-hover:scale-125"></i>
+                    <span className="text-sm font-medium transition-colors duration-300 group-hover:text-green-600 dark:group-hover:text-green-400">MongoDB</span>
                     <div className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       <i className="fas fa-external-link-alt text-xs text-green-500"></i>
                     </div>
@@ -624,38 +642,38 @@ function Landing() {
                 <div className="relative overflow-hidden">
                   <img
                     className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105"
-                    src={diu}
-                    alt="Diu Travels project"
+                    src={valocrate}
+                    alt="Valorant Crate Simulator project"
                   />
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
                 </div>
                 <div className="p-6">
                   <div className="flex items-center justify-between mb-3">
-                    <span className="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 text-xs rounded-full">
-                      Bootstrap
+                    <span className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-xs rounded-full">
+                      React
                     </span>
                     <div className="flex gap-2">
                       <a
-                        href="https://diutravels.com/"
+                        href="https://track-valorant.vercel.app/"
                         target="_blank"
-                        className="w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
+                        className="w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                       >
                         <i className="fas fa-external-link-alt text-xs"></i>
                       </a>
                       <a
-                        href="https://github.com/pruthvz/updatedTravelsite"
+                        href="https://github.com/pruthvz/track-valorant"
                         target="_blank"
-                        className="w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
+                        className="w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                       >
                         <i className="fab fa-github text-xs"></i>
                       </a>
                     </div>
                   </div>
                   <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                    Diu Travels
+                    Valorant Crate Simulator
                   </h3>
                   <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
-                    A responsive travel website showcasing beautiful destinations with modern design and smooth user experience.
+                    An immersive web application that simulates opening Valorant weapon skin crates. Features an inventory system with localStorage persistence. 
                   </p>
                 </div>
               </div>

@@ -17,6 +17,7 @@ import spateagain from "../assets/projectImg/spate.png";
 import webpage from "../assets/projectImg/ionics-webpage.png";
 import flask from "../assets/projectImg/flasktodo.png";
 import reactloader from "../assets/projectImg/react-skeleton.png";
+import valocrate from "../assets/projectImg/valocrate.png";
 // Revvlane screenshots
 import revvlane1 from "../assets/revvlane/img_7268.png";
 import revvlane2 from "../assets/revvlane/img_7269.png";
@@ -65,6 +66,20 @@ const mobileProjects = [
 ];
 
 const myProjects = [
+  {
+    title: "Valorant Crate Simulator",
+    subTitle: "React.js & Vite",
+    desc: "An immersive web application that simulates opening Valorant weapon skin crates. Features an inventory system with localStorage persistence, authentic Valorant-themed design, and full responsiveness across all devices.",
+    img: valocrate,
+    imgAlt: "Valorant Crate Simulator",
+    github: "https://github.com/pruthvz/track-valorant",
+    website: "https://track-valorant.vercel.app/",
+    hash1: "#React.js",
+    hash2: "#Vite",
+    hash3: "#TailwindCSS",
+    hash4: "#Valorant API",
+    margin: "mb-8",
+  },
   {
     title: "Instabooth",
     subTitle: "Online Photobooth Web App",
