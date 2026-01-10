@@ -18,6 +18,7 @@ import webpage from "../assets/projectImg/ionics-webpage.png";
 import flask from "../assets/projectImg/flasktodo.png";
 import reactloader from "../assets/projectImg/react-skeleton.png";
 import valocrate from "../assets/projectImg/valocrate.png";
+import newtron from "../assets/projectImg/newtron.gif";
 // Revvlane screenshots
 import revvlane1 from "../assets/revvlane/img_7268.png";
 import revvlane2 from "../assets/revvlane/img_7269.png";
@@ -119,6 +120,20 @@ const myProjects = [
     hash2: "#CSS",
     hash3: "#Image Lazy Loading",
     hash4: "#Responsive Design",
+  },
+  {
+    title: "NewtonAR",
+    subTitle: "Augmented Reality Mobile App",
+    desc: "An interactive AR mobile application designed to enhance visitor experience at the University of Lincoln's Isaac Newton Building. Features marker-based AR tracking, interactive information displays, text-to-speech, and a gamified collectables system. Built with Unity and AR Foundation.",
+    img: newtron,
+    imgAlt: "NewtonAR Augmented Reality Application",
+    github: "https://github.com/pruthvz/Newtron-AR-Project",
+    website: "https://www.youtube.com/shorts/YPct3O9tQ9w",
+    hash1: "#Unity",
+    hash2: "#AR Foundation",
+    hash3: "#C#",
+    hash4: "#Mobile AR",
+    margin: "mb-8",
   },
   {
     title: "Verselet",
