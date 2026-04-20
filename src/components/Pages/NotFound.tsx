@@ -1,82 +1,128 @@
-import { Link } from "react-router-dom";
-import { useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { useEffect, useMemo } from "react";
+import ScrollReveal from "../Homepage/ScrollReveal";
 
-export default function NotFound() {
+function NotFound() {
+  const location = useLocation();
+
   useEffect(() => {
-    document.title = "404 - Pruthvi Mohanlal";
+    document.title = "404 — Pruthvi Mohanlal";
   }, []);
+
+  const pathLine = useMemo(() => {
+    const p = location.pathname || "/";
+    if (p.length > 48) return `${p.slice(0, 44)}…`;
+    return p;
+  }, [location.pathname]);
+
   return (
-    <div className="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen flex flex-col justify-center items-center">
-      <div className="container mx-auto px-6 text-center">
-        {/* 404 Content */}
-        <div className="max-w-2xl mx-auto">
-          <div className="mb-8" data-aos="fade-up">
-            <span className="inline-block px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full text-sm font-medium">
-            You ran into a wall
-            </span>
-          </div>
-          
-          <h1 className="text-8xl md:text-9xl font-light text-gray-900 dark:text-white mb-6" data-aos="fade-up" data-aos-delay="100">
+    <div className="relative flex min-h-screen flex-col bg-slate-50 text-slate-900 dark:bg-[#070a10] dark:text-slate-100">
+      <div
+        className="pointer-events-none fixed inset-0 -z-10 opacity-[0.35] dark:opacity-[0.12]"
+        aria-hidden
+        style={{
+          backgroundImage: `radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)`,
+          backgroundSize: "22px 22px",
+        }}
+      />
+
+      <main className="flex flex-1 flex-col items-center justify-center px-5 py-20 sm:px-6 sm:py-24">
+        <div className="relative w-full max-w-lg text-center">
+          <div
+            className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-[52%] select-none font-bold tabular-nums leading-none text-slate-200/90 dark:text-white/[0.045]"
+            style={{ fontSize: "clamp(7.5rem, 32vw, 13rem)" }}
+            aria-hidden
+          >
             404
-          </h1>
-          
-          <h2 className="text-3xl md:text-4xl font-light text-gray-900 dark:text-white mb-6" data-aos="fade-up" data-aos-delay="200">
-            Page Not Found
-          </h2>
-          
-          <p className="text-xl text-gray-600 dark:text-gray-400 mb-12 max-w-lg mx-auto" data-aos="fade-up" data-aos-delay="300">
-            The page you're looking for doesn't exist or has been moved. 
-            Let's get you back on track.
-          </p>
-
-          {/* Navigation Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center" data-aos="fade-up" data-aos-delay="400">
-            <Link
-              to="/"
-              className="inline-flex items-center justify-center px-8 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-full font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg"
-            >
-              <span>Go Home</span>
-              <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-              </svg>
-            </Link>
-            
-            <Link
-              to="/projects"
-              className="inline-flex items-center justify-center px-8 py-3 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white rounded-full font-medium transition-all duration-300 hover:bg-gray-100 dark:hover:bg-gray-800"
-            >
-              <span>View Projects</span>
-              <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-              </svg>
-            </Link>
           </div>
 
-          {/* Additional Help */}
-          <div className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-700" data-aos="fade-up" data-aos-delay="500">
-            <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
-              Need help finding something?
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center text-sm">
+          <div className="relative z-10">
+            <ScrollReveal>
+              <p className="font-mono text-xs font-medium tracking-wide text-sky-600 dark:text-sky-400">
+                /404
+              </p>
+              <h1 className="mt-3 text-3xl font-semibold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
+                Nothing lives at this URL.
+              </h1>
+              <p className="mx-auto mt-4 max-w-md text-base leading-relaxed text-slate-600 dark:text-slate-400">
+                The page may have moved, or the link could be mistyped. Pick a
+                destination below or head home.
+              </p>
+            </ScrollReveal>
+
+            <ScrollReveal delayMs={90} className="mt-8">
+              <div className="mx-auto max-w-md overflow-hidden rounded-2xl border border-slate-200/90 bg-white/90 text-left shadow-sm dark:border-white/10 dark:bg-[#0c1018]/95">
+                <div className="flex items-center gap-2 border-b border-slate-200/80 px-4 py-2.5 dark:border-white/[0.08]">
+                  <span className="h-2 w-2 rounded-full bg-red-400/90" />
+                  <span className="h-2 w-2 rounded-full bg-amber-400/90" />
+                  <span className="h-2 w-2 rounded-full bg-emerald-400/90" />
+                  <span className="ml-auto font-mono text-[0.65rem] text-slate-400 dark:text-slate-500">
+                    route.ts
+                  </span>
+                </div>
+                <pre className="overflow-x-auto p-4 font-mono text-[0.75rem] leading-relaxed text-slate-700 dark:text-slate-300 sm:text-xs">
+                  <span className="text-sky-600 dark:text-sky-400">GET</span>{" "}
+                  <span className="text-emerald-600 dark:text-emerald-400/90">
+                    &quot;{pathLine}&quot;
+                  </span>
+                  <span className="text-slate-500 dark:text-slate-500"> → </span>
+                  <span className="text-rose-600 dark:text-rose-400">404</span>
+                </pre>
+              </div>
+            </ScrollReveal>
+
+            <ScrollReveal delayMs={160} className="mt-10 flex flex-col gap-3 sm:flex-row sm:justify-center">
               <Link
-                to="/about"
-                className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
+                to="/"
+                className="inline-flex items-center justify-center rounded-full bg-slate-900 px-8 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-800 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-200"
               >
-                About Me
+                <i className="fas fa-home mr-2 text-xs opacity-80" aria-hidden />
+                Home
               </Link>
-              <span className="hidden sm:inline text-gray-300 dark:text-gray-600">•</span>
-              <button
-                onClick={() => {
-                  window.location.href = "mailto:pruthvimohanlal10@gmail.com";
-                }}
-                className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
+              <Link
+                to="/projects"
+                className="inline-flex items-center justify-center rounded-full border border-slate-200/90 bg-white/90 px-8 py-3 text-sm font-semibold text-slate-800 transition hover:border-slate-300 hover:bg-white dark:border-white/15 dark:bg-white/[0.05] dark:text-white dark:hover:border-white/25 dark:hover:bg-white/[0.09]"
               >
-                Contact Me
-              </button>
-            </div>
+                Projects
+                <i
+                  className="fas fa-arrow-right ml-2 text-xs opacity-70"
+                  aria-hidden
+                />
+              </Link>
+            </ScrollReveal>
+
+            <ScrollReveal delayMs={220} className="mt-12 border-t border-slate-200/80 pt-8 dark:border-white/[0.08]">
+              <p className="text-xs font-medium uppercase tracking-wider text-slate-500 dark:text-slate-500">
+                Elsewhere
+              </p>
+              <div className="mt-4 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm">
+                <Link
+                  to="/about"
+                  className="font-medium text-slate-700 underline decoration-slate-300 underline-offset-4 transition hover:text-slate-900 dark:text-slate-300 dark:decoration-white/20 dark:hover:text-white"
+                >
+                  About
+                </Link>
+                <a
+                  href="mailto:pruthvimohanlal10@gmail.com"
+                  className="font-medium text-slate-700 underline decoration-slate-300 underline-offset-4 transition hover:text-slate-900 dark:text-slate-300 dark:decoration-white/20 dark:hover:text-white"
+                >
+                  Email
+                </a>
+                <a
+                  href="https://github.com/pruthvz"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium text-slate-700 underline decoration-slate-300 underline-offset-4 transition hover:text-slate-900 dark:text-slate-300 dark:decoration-white/20 dark:hover:text-white"
+                >
+                  GitHub
+                </a>
+              </div>
+            </ScrollReveal>
           </div>
         </div>
-      </div>
+      </main>
     </div>
   );
 }
+
+export default NotFound;

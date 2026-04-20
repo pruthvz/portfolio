@@ -1,234 +1,447 @@
+import { Link } from "react-router-dom";
+import { useState, useEffect, useMemo, type ReactNode } from "react";
 import Project from "../Projects";
 import MobileProject from "../MobileProject";
-import { useState, useEffect } from "react";
+import ScrollReveal from "../Homepage/ScrollReveal";
+
+type ProjectEntry = (typeof Project.myProjects)[number] & {
+  screenshots?: string[];
+};
+
+const FILTERS = ["All", "Web", "Mobile"] as const;
+type Filter = (typeof FILTERS)[number];
+
+function canOpenUrl(href: string) {
+  return /^https?:\/\//i.test(href.trim());
+}
+
+function stackTags(project: ProjectEntry) {
+  const raw = [project.hash1, project.hash2, project.hash3, project.hash4].filter(
+    Boolean
+  ) as string[];
+  return raw.map((t) => t.replace(/^#/, "").trim()).filter(Boolean);
+}
+
+function ProjectCardImage({
+  project,
+  className = "",
+}: {
+  project: ProjectEntry;
+  className?: string;
+}) {
+  const images =
+    project.screenshots && project.screenshots.length > 0
+      ? project.screenshots
+      : [project.img];
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    if (images.length <= 1) return;
+    const id = window.setInterval(
+      () => setIndex((i) => (i + 1) % images.length),
+      5000
+    );
+    return () => window.clearInterval(id);
+  }, [images.length]);
+
+  const showNav = images.length > 1;
+
+  return (
+    <div
+      className={`relative aspect-[16/10] w-full overflow-hidden bg-slate-100 dark:bg-slate-900 ${className}`}
+    >
+      <img
+        className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
+        src={images[index]}
+        alt={`${project.imgAlt} — view ${index + 1} of ${images.length}`}
+      />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-900/30 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 dark:from-black/50" />
+      {showNav && (
+        <>
+          <button
+            type="button"
+            aria-label="Previous screenshot"
+            onClick={(e) => {
+              e.preventDefault();
+              setIndex((i) => (i - 1 + images.length) % images.length);
+            }}
+            className="absolute left-2 top-1/2 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-white/95 text-slate-800 shadow-md opacity-0 transition-opacity hover:bg-white group-hover:opacity-100 dark:border-white/10 dark:bg-slate-900/95 dark:text-slate-100 dark:hover:bg-slate-800"
+          >
+            <i className="fas fa-chevron-left text-xs" />
+          </button>
+          <button
+            type="button"
+            aria-label="Next screenshot"
+            onClick={(e) => {
+              e.preventDefault();
+              setIndex((i) => (i + 1) % images.length);
+            }}
+            className="absolute right-2 top-1/2 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-white/95 text-slate-800 shadow-md opacity-0 transition-opacity hover:bg-white group-hover:opacity-100 dark:border-white/10 dark:bg-slate-900/95 dark:text-slate-100 dark:hover:bg-slate-800"
+          >
+            <i className="fas fa-chevron-right text-xs" />
+          </button>
+          <div className="absolute bottom-3 left-1/2 z-10 flex -translate-x-1/2 gap-1.5">
+            {images.map((_, i) => (
+              <button
+                key={i}
+                type="button"
+                aria-label={`Show screenshot ${i + 1}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIndex(i);
+                }}
+                className={`h-1.5 rounded-full transition-all ${
+                  i === index
+                    ? "w-5 bg-white"
+                    : "w-1.5 bg-white/45 hover:bg-white/80"
+                }`}
+              />
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+
+function IconLink({
+  href,
+  label,
+  children,
+}: {
+  href: string;
+  label: string;
+  children: ReactNode;
+}) {
+  const ok = canOpenUrl(href);
+  if (!ok) {
+    return (
+      <span
+        title="Not linked"
+        className="inline-flex h-9 w-9 cursor-not-allowed items-center justify-center rounded-full border border-slate-200/80 bg-slate-50 text-slate-300 dark:border-white/10 dark:bg-white/[0.03] dark:text-slate-600"
+        aria-label={`${label} (unavailable)`}
+      >
+        {children}
+      </span>
+    );
+  }
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={label}
+      className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-200/90 bg-white text-slate-500 transition hover:border-sky-300/80 hover:text-slate-900 dark:border-white/10 dark:bg-white/[0.06] dark:text-slate-400 dark:hover:border-sky-500/40 dark:hover:text-white"
+    >
+      {children}
+    </a>
+  );
+}
+
+function WebProjectCard({
+  project,
+  index,
+  featured,
+}: {
+  project: ProjectEntry;
+  index: number;
+  featured: boolean;
+}) {
+  const tags = stackTags(project);
+  const idx = String(index + 1).padStart(2, "0");
+
+  if (featured) {
+    return (
+      <article className="group relative flex min-h-[280px] flex-col overflow-hidden rounded-2xl border border-slate-200/90 bg-white/90 shadow-sm ring-1 ring-slate-900/[0.02] transition duration-300 hover:-translate-y-0.5 hover:shadow-xl dark:border-white/10 dark:bg-[#0c1018] dark:ring-white/[0.04] dark:hover:shadow-black/50 lg:flex-row">
+        <span
+          className="pointer-events-none absolute left-4 top-4 z-[1] font-mono text-[0.65rem] font-medium tabular-nums text-slate-400 dark:text-slate-500"
+          aria-hidden
+        >
+          {idx}
+        </span>
+        <div className="relative min-h-[200px] w-full lg:w-[58%] lg:min-h-0 lg:self-stretch">
+          <ProjectCardImage
+            project={project}
+            className="aspect-[16/10] min-h-[200px] lg:absolute lg:inset-0 lg:aspect-auto lg:min-h-full"
+          />
+        </div>
+        <div className="flex flex-1 flex-col justify-center p-6 sm:p-8 lg:max-w-xl lg:py-10">
+          <div className="mb-4 flex flex-wrap items-center gap-2">
+            <span className="rounded-full border border-slate-200/90 bg-slate-50 px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-wide text-slate-600 dark:border-white/10 dark:bg-white/[0.06] dark:text-slate-300">
+              {project.subTitle}
+            </span>
+            <div className="ml-auto flex gap-1.5">
+              <IconLink href={project.website} label="Live site">
+                <i className="fas fa-external-link-alt text-xs" />
+              </IconLink>
+              <IconLink href={project.github} label="Source on GitHub">
+                <i className="fab fa-github text-sm" />
+              </IconLink>
+            </div>
+          </div>
+          <h3 className="text-2xl font-semibold tracking-tight text-slate-900 dark:text-white">
+            {project.title}
+          </h3>
+          <p className="mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+            {project.desc}
+          </p>
+          <div className="mt-5 flex flex-wrap gap-2">
+            {tags.map((tag) => (
+              <span
+                key={tag}
+                className="rounded-md border border-slate-200/80 bg-slate-50 px-2 py-1 font-mono text-[0.65rem] text-slate-600 dark:border-white/10 dark:bg-white/[0.04] dark:text-slate-400"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+      </article>
+    );
+  }
+
+  return (
+    <article className="group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200/90 bg-white/90 shadow-sm ring-1 ring-slate-900/[0.02] transition duration-300 hover:-translate-y-0.5 hover:shadow-lg dark:border-white/10 dark:bg-[#0c1018] dark:ring-white/[0.04] dark:hover:shadow-xl dark:hover:shadow-black/40">
+      <span
+        className="pointer-events-none absolute left-3 top-3 z-[1] font-mono text-[0.6rem] font-medium tabular-nums text-slate-400 dark:text-slate-500"
+        aria-hidden
+      >
+        {idx}
+      </span>
+      <ProjectCardImage project={project} />
+      <div className="flex flex-1 flex-col p-5 sm:p-6">
+        <div className="mb-3 flex items-start justify-between gap-3">
+          <span className="line-clamp-2 rounded-full border border-slate-200/90 bg-slate-50 px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-wide text-slate-600 dark:border-white/10 dark:bg-white/[0.06] dark:text-slate-300">
+            {project.subTitle}
+          </span>
+          <div className="flex shrink-0 gap-1.5">
+            <IconLink href={project.website} label="Live site">
+              <i className="fas fa-external-link-alt text-xs" />
+            </IconLink>
+            <IconLink href={project.github} label="Source on GitHub">
+              <i className="fab fa-github text-sm" />
+            </IconLink>
+          </div>
+        </div>
+        <h3 className="text-lg font-semibold text-slate-900 dark:text-white">
+          {project.title}
+        </h3>
+        <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+          {project.desc}
+        </p>
+        <div className="mt-4 flex flex-wrap gap-2">
+          {tags.map((tag) => (
+            <span
+              key={tag}
+              className="rounded-md border border-slate-200/80 bg-slate-50 px-2 py-1 font-mono text-[0.65rem] text-slate-600 dark:border-white/10 dark:bg-white/[0.04] dark:text-slate-400"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+      </div>
+    </article>
+  );
+}
 
 function Projects() {
-  const [activeFilter, setActiveFilter] = useState("All");
+  const [activeFilter, setActiveFilter] = useState<Filter>("All");
 
   useEffect(() => {
     document.title = "Pruthvi Mohanlal - Projects";
   }, []);
 
-  const filterCategories = ["All", "Web", "Mobile", "Design"];
+  const webProjects = useMemo(() => Project.myProjects, []);
 
-  // Process projects to add categories if they don't exist
-  const projectsWithCategories = Project.myProjects.map((project) => ({
-    ...project,
-    category:
-      project.subTitle.includes("React") || project.subTitle.includes("Next")
-        ? "Web"
-        : project.subTitle.includes("Travel")
-        ? "Design"
-        : project.subTitle.includes("Programming") ||
-          project.subTitle.includes("Developer")
-        ? "Web"
-        : "Other",
-  }));
+  const showMobile = activeFilter === "All" || activeFilter === "Mobile";
+  const showWeb = activeFilter === "All" || activeFilter === "Web";
 
-  const filteredProjects =
-    activeFilter === "All"
-      ? projectsWithCategories
-      : projectsWithCategories.filter(
-          (project) => project.category === activeFilter
-        );
+  const totalCount = Project.myProjects.length + Project.mobileProjects.length;
 
   return (
-    <div className="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
-      {/* Hero Section */}
-      <section className="pt-24 pb-16">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="mb-6" data-aos="fade-up">
-              <span className="inline-block px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full text-sm font-medium">
-                My Work
-              </span>
+    <div className="bg-slate-50 text-slate-900 dark:bg-[#070a10] dark:text-slate-100">
+      <div
+        className="pointer-events-none fixed inset-0 -z-10 opacity-[0.4] dark:opacity-[0.12]"
+        aria-hidden
+        style={{
+          backgroundImage: `radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)`,
+          backgroundSize: "22px 22px",
+        }}
+      />
+
+      {/* Hero */}
+      <section className="border-b border-slate-200/80 pt-28 pb-16 dark:border-white/[0.06] md:pt-32 md:pb-20">
+        <div className="mx-auto max-w-6xl px-5 sm:px-6">
+          <ScrollReveal>
+            <div className="max-w-3xl">
+              <p className="font-mono text-xs font-medium tracking-wide text-sky-600 dark:text-sky-400">
+                /projects
+              </p>
+              <h1 className="mt-3 text-4xl font-semibold tracking-tight text-slate-900 dark:text-white md:text-5xl lg:text-[2.75rem] lg:leading-[1.1]">
+                Interfaces, products, and experiments.
+              </h1>
+              <p className="mt-5 max-w-2xl text-base leading-relaxed text-slate-600 dark:text-slate-400 md:text-lg">
+                A living archive of what I have shipped—from client sites and
+                e‑commerce to mobile apps, internal tools, and learning builds.
+                Each card links out when a demo or repo is public.
+              </p>
+              <div className="mt-8 flex flex-wrap items-center gap-3 font-mono text-xs text-slate-500 dark:text-slate-400">
+                <span className="rounded-lg border border-slate-200/90 bg-white/90 px-3 py-1.5 dark:border-white/10 dark:bg-white/[0.04]">
+                  <span className="text-slate-400 dark:text-slate-500">modules</span>{" "}
+                  <span className="font-semibold tabular-nums text-slate-800 dark:text-slate-200">
+                    {totalCount}
+                  </span>
+                </span>
+                <span className="rounded-lg border border-slate-200/90 bg-white/90 px-3 py-1.5 dark:border-white/10 dark:bg-white/[0.04]">
+                  <span className="text-slate-400 dark:text-slate-500">web</span>{" "}
+                  <span className="font-semibold tabular-nums text-slate-800 dark:text-slate-200">
+                    {Project.myProjects.length}
+                  </span>
+                </span>
+                <span className="rounded-lg border border-slate-200/90 bg-white/90 px-3 py-1.5 dark:border-white/10 dark:bg-white/[0.04]">
+                  <span className="text-slate-400 dark:text-slate-500">mobile</span>{" "}
+                  <span className="font-semibold tabular-nums text-slate-800 dark:text-slate-200">
+                    {Project.mobileProjects.length}
+                  </span>
+                </span>
+              </div>
             </div>
-            <h1 className="text-5xl md:text-6xl font-light text-gray-900 dark:text-white mb-6" data-aos="fade-up" data-aos-delay="100">
-              Featured Projects
-            </h1>
-            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="200">
-              A collection of web development projects showcasing modern technologies and clean design principles.
-            </p>
-          </div>
-        </div>
-      </section>
+          </ScrollReveal>
 
-      {/* Projects Gallery */}
-      <section className="py-16 bg-gray-50 dark:bg-gray-800/50">
-        <div className="container mx-auto px-6">
-         
-
-          {/* Filter Tabs */}
-          <div className="flex justify-center mb-12 overflow-x-auto py-2" data-aos="fade-up" data-aos-delay="100">
-            <div className="inline-flex bg-gray-100 dark:bg-gray-800 rounded-full p-1">
-              {filterCategories.map((category) => (
+          <ScrollReveal delayMs={80} className="mt-10">
+            <div
+              role="tablist"
+              aria-label="Filter projects"
+              className="inline-flex flex-wrap gap-1 rounded-2xl border border-slate-200/90 bg-white/80 p-1 shadow-sm dark:border-white/10 dark:bg-white/[0.04]"
+            >
+              {FILTERS.map((f) => (
                 <button
-                  key={category}
-                  onClick={() => setActiveFilter(category)}
-                  className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                    activeFilter === category
-                      ? "bg-white dark:bg-gray-700 text-gray-900 dark:text-white shadow-sm"
-                      : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
+                  key={f}
+                  type="button"
+                  role="tab"
+                  aria-selected={activeFilter === f}
+                  onClick={() => setActiveFilter(f)}
+                  className={`rounded-xl px-4 py-2 text-sm font-medium transition ${
+                    activeFilter === f
+                      ? "bg-slate-900 text-white shadow-sm dark:bg-white dark:text-slate-900"
+                      : "text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
                   }`}
                 >
-                  {category}
+                  {f}
                 </button>
               ))}
             </div>
-          </div>
+          </ScrollReveal>
+        </div>
+      </section>
 
-          {/* Mobile Projects Section */}
-          {activeFilter === "All" || activeFilter === "Mobile" ? (
-            <div className="mb-20">
-              {(activeFilter === "All" && Project.mobileProjects.length > 0) && (
-                <div className="text-center mb-12">
-                  <h3 className="text-2xl font-light text-gray-900 dark:text-white mb-4">
-                    Mobile Applications
-                  </h3>
+      <section className="py-16 md:py-24">
+        <div className="mx-auto max-w-6xl px-5 sm:px-6">
+          {showMobile && Project.mobileProjects.length > 0 ? (
+            <div className="mb-20 md:mb-28">
+              <ScrollReveal>
+                <div className="mb-10 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+                  <div>
+                    <h2 className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">
+                      Native & cross‑platform
+                    </h2>
+                    <p className="mt-2 text-2xl font-semibold tracking-tight text-slate-900 dark:text-white">
+                      Mobile showcase
+                    </p>
+                  </div>
+                  <p className="max-w-md text-sm text-slate-600 dark:text-slate-400">
+                    Split layout: story on one side, device on the other—pick a
+                    screen from the strip or swipe inside the frame.
+                  </p>
                 </div>
-              )}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              </ScrollReveal>
+              <div className="flex flex-col gap-10 lg:gap-12">
                 {Project.mobileProjects.map((mobileProject, index) => (
-                  <MobileProject
-                    key={index}
-                    project={mobileProject}
-                    index={index}
-                  />
+                  <ScrollReveal key={mobileProject.title} delayMs={index * 90}>
+                    <MobileProject
+                      project={mobileProject}
+                      reverse={index % 2 === 1}
+                    />
+                  </ScrollReveal>
                 ))}
               </div>
             </div>
           ) : null}
 
-          {/* Desktop Projects Section */}
-          {activeFilter === "All" || activeFilter === "Web" || activeFilter === "Design" ? (
+          {showWeb ? (
             <div>
-              {(activeFilter === "All" && filteredProjects.length > 0) && (
-                <div className="text-center mb-12">
-                  <h3 className="text-2xl font-light text-gray-900 dark:text-white mb-4">
-                    Web Projects
-                  </h3>
-                </div>
-              )}
-              
-              {/* Desktop Projects Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-            {filteredProjects.map((project, index) => (
-              <div
-                key={index}
-                className="group bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700 transition-all duration-300 hover:shadow-lg"
-                data-aos="fade-up"
-                data-aos-delay={50 * ((index + (Project.mobileProjects.length * 2)) % 3)}
-              >
-                <div className="relative overflow-hidden">
-                  <img
-                    className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105"
-                    src={project.img}
-                    alt={project.imgAlt}
-                  />
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
-                </div>
-
-                <div className="p-6">
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-xs rounded-full">
-                      {project.subTitle}
-                    </span>
-                    <div className="flex gap-2">
-                      <a
-                        href={project.website}
-                        target="_blank"
-                        className="w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                      >
-                        <i className="fas fa-external-link-alt text-xs"></i>
-                      </a>
-                      <a
-                        href={project.github}
-                        target="_blank"
-                        className="w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                      >
-                        <i className="fab fa-github text-xs"></i>
-                      </a>
-                    </div>
+              <ScrollReveal>
+                <div className="mb-10 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+                  <div>
+                    <h2 className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">
+                      Web & desktop
+                    </h2>
+                    <p className="mt-2 text-2xl font-semibold tracking-tight text-slate-900 dark:text-white">
+                      Full project index
+                    </p>
                   </div>
-
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                    {project.title}
-                  </h3>
-
-                  <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-4">
-                    {project.desc}
+                  <p className="max-w-md text-sm text-slate-600 dark:text-slate-400">
+                    Browsers, Shopify, internal Python tools, Electron, and
+                    weekend spikes—nothing hidden behind the filter.
                   </p>
-
-                  <div className="flex flex-wrap gap-2">
-                    {project.hash1 && (
-                      <span className="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 text-xs rounded-md whitespace-nowrap">
-                        {project.hash1.replace("#", "")}
-                      </span>
-                    )}
-                    {project.hash2 && (
-                      <span className="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 text-xs rounded-md whitespace-nowrap">
-                        {project.hash2.replace("#", "")}
-                      </span>
-                    )}
-                    {project.hash3 && (
-                      <span className="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 text-xs rounded-md whitespace-nowrap">
-                        {project.hash3.replace("#", "")}
-                      </span>
-                    )}
-                    {project.hash4 && (
-                      <span className="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 text-xs rounded-md whitespace-nowrap">
-                        {project.hash4.replace("#", "")}
-                      </span>
-                    )}
-                  </div>
                 </div>
-              </div>
-            ))}
+              </ScrollReveal>
+
+              <div className="grid grid-cols-1 gap-7 md:grid-cols-2 md:gap-8 lg:grid-cols-3">
+                {webProjects.map((project, index) => {
+                  const featured =
+                    (activeFilter === "All" || activeFilter === "Web") &&
+                    index === 0;
+                  return (
+                    <ScrollReveal
+                      key={`${project.title}-${index}`}
+                      delayMs={(index % 6) * 55}
+                      className={featured ? "lg:col-span-2" : ""}
+                    >
+                      <WebProjectCard
+                        project={project}
+                        index={index}
+                        featured={featured}
+                      />
+                    </ScrollReveal>
+                  );
+                })}
               </div>
             </div>
           ) : null}
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section className="py-24">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="mb-6" data-aos="fade-up">
-              <span className="inline-block px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full text-sm font-medium">
-                Let's Work Together
-              </span>
-            </div>
-            <h2 className="text-4xl md:text-5xl font-light text-gray-900 dark:text-white mb-6" data-aos="fade-up" data-aos-delay="100">
-              Interested in collaborating?
-            </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-400 mb-8" data-aos="fade-up" data-aos-delay="200">
-              I'm always excited to work on new projects and bring ideas to life. 
-              Let's discuss how we can create something amazing together.
+      {/* CTA */}
+      <section className="border-t border-slate-200/80 py-20 dark:border-white/[0.06] md:py-28">
+        <div className="mx-auto max-w-3xl px-5 text-center sm:px-6">
+          <ScrollReveal>
+            <p className="font-mono text-xs font-medium tracking-wide text-sky-600 dark:text-sky-400">
+              Next
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center" data-aos="fade-up" data-aos-delay="300">
-              <button
-                onClick={() => {
-                  window.location.href = "mailto:pruthvimohanlal10@gmail.com";
-                }}
-                className="inline-flex items-center justify-center px-8 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-full font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg"
-              >
-                <span>Get in Touch</span>
-                <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-              </button>
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-900 dark:text-white md:text-4xl">
+              Building something similar?
+            </h2>
+            <p className="mx-auto mt-4 max-w-lg text-slate-600 dark:text-slate-400">
+              I am open to collaborations, freelance UI work, and product
+              engineering. Tell me about your stack and timeline.
+            </p>
+            <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <a
-                href="/resume"
-                className="inline-flex items-center justify-center px-8 py-3 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white rounded-full font-medium transition-all duration-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+                href="mailto:pruthvimohanlal10@gmail.com"
+                className="inline-flex items-center justify-center rounded-full bg-slate-900 px-8 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-800 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-200"
               >
-                <span>View Resume</span>
-                <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                </svg>
+                Email me
+                <i className="fas fa-arrow-right ml-2 text-xs opacity-80" />
               </a>
+              <Link
+                to="/about"
+                className="inline-flex items-center justify-center rounded-full border border-slate-200/90 bg-white/90 px-8 py-3 text-sm font-semibold text-slate-800 transition hover:border-slate-300 dark:border-white/10 dark:bg-white/[0.04] dark:text-white dark:hover:border-white/20"
+              >
+                About &amp; background
+              </Link>
             </div>
-          </div>
+          </ScrollReveal>
         </div>
       </section>
     </div>

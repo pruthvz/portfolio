@@ -2,6 +2,11 @@ import instabooth from "../assets/projectImg/booth.png";
 import crescent from "../assets/projectImg/crescent.png";
 import nisha from "../assets/projectImg/nisha.png";
 import verselet from "../assets/projectImg/verselet.png";
+import sheetgen1 from "../assets/projectImg/gen1.png";
+import sheetgen2 from "../assets/projectImg/gen2.png";
+import sheetgen3 from "../assets/projectImg/gen3.png";
+import sheetgen4 from "../assets/projectImg/gen4.png";
+import sheetgen5 from "../assets/projectImg/gen5.png";
 import spate from "../assets/projectImg/spatepate.png";
 import oopsDev from "../assets/projectImg/oopsdev.png";
 import diu from "../assets/projectImg/diutravels.png";
@@ -56,8 +61,8 @@ const mobileProjects = [
     desc: "A collaborative mobile platform enabling groups to set destinations, track members, and coordinate meetups with real-time navigation.",
     screenshots: [wetogether1, wetogether2, wetogether3, wetogether4, wetogether5, wetogether6],
     category: "Mobile",
-    github: "https://github.com/pruthvz",
-    website: "#coming-soon",
+    github: "https://wetogetherbeta.netlify.app/",
+    website: "https://wetogetherbeta.netlify.app/",
     hash1: "#React Native/Node.js",
     hash2: "#Mapbox SDK",
     hash3: "#Socket.io Real-time",
@@ -148,16 +153,18 @@ const myProjects = [
     hash3: "#Challenges",
   },
   {
-    title: "Spatepate",
-    subTitle: "Programming Tutorials",
-    desc: "I created spatepate for developers who are looking for videos on how to code. I included the most of programming languages and gathered beginner friendly and advanced tutorials.",
-    img: spate,
-    imgAlt: "Spatepate Image",
-    github: "https://github.com/pruthvz/spatepate",
-    website: "https://pruthvz.github.io/spatepate/",
-    hash1: "#React.js",
-    hash2: "#Bootstrap",
-    hash3: "#Tutorials",
+    title: "SheetGen",
+    subTitle: "Python Desktop App",
+    desc: "An internal desktop tool I built for a company to streamline setup workflows and day-to-day efficiency. Built in Python with a focused UI for generating and managing sheets faster than manual processes.",
+    img: sheetgen1,
+    imgAlt: "SheetGen desktop application",
+    screenshots: [sheetgen1, sheetgen2, sheetgen3, sheetgen4, sheetgen5],
+    github: "https://github.com/pruthvz/setup-sheetgen",
+    website: "https://github.com/pruthvz/setup-sheetgen",
+    hash1: "#Python",
+    hash2: "#Desktop App",
+    hash3: "#Internal Tools",
+    hash4: "#Automation",
   },
   {
     title: "ooopsDev",
@@ -183,6 +190,18 @@ const myProjects = [
     hash1: "#HTML/CSS",
     hash2: "#Material Design Bootstrap",
     hash3: "#JavaScript",
+  },
+  {
+    title: "Spatepate",
+    subTitle: "Programming Tutorials",
+    desc: "I created spatepate for developers who are looking for videos on how to code. I included the most of programming languages and gathered beginner friendly and advanced tutorials.",
+    img: spate,
+    imgAlt: "Spatepate Image",
+    github: "https://github.com/pruthvz/spatepate",
+    website: "https://pruthvz.github.io/spatepate/",
+    hash1: "#React.js",
+    hash2: "#Bootstrap",
+    hash3: "#Tutorials",
   },
   {
     title: "Project Weeee",

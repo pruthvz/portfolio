@@ -1,4 +1,10 @@
-import { HashRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import {
+  HashRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+  Link,
+} from "react-router-dom";
 import { useState, useEffect } from "react";
 
 import Navbar from "./components/Navbar/Navbar";
@@ -8,7 +14,8 @@ import NotFound from "./components/Pages/NotFound";
 import Projects from "./components/Pages/Projects";
 import Footer from "./components/Footer/Footer";
 
-// Component to handle scroll to top on route change
+const PATHS_WITH_FOOTER = new Set(["/", "/about", "/projects"]);
+
 function ScrollToTop() {
   const { pathname } = useLocation();
 
@@ -19,27 +26,24 @@ function ScrollToTop() {
   return null;
 }
 
-function App() {
+function AppLayout() {
+  const { pathname } = useLocation();
+  const showFooter = PATHS_WITH_FOOTER.has(pathname);
+
   const [showToast, setShowToast] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
 
   useEffect(() => {
-    // Show toast after a short delay when component mounts
     const timer = setTimeout(() => {
       setShowToast(true);
     }, 1000);
 
-    // Function to handle scroll events
     const handleScroll = () => {
-      if (window.scrollY > 400) {
-        setShowScrollTop(true);
-      } else {
-        setShowScrollTop(false);
-      }
+      setShowScrollTop(window.scrollY > 400);
     };
 
-    // Add scroll event listener
-    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => {
       clearTimeout(timer);
@@ -47,7 +51,6 @@ function App() {
     };
   }, []);
 
-  // Function to scroll to top smoothly
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -57,110 +60,124 @@ function App() {
 
   return (
     <>
-      <Router>
-        <ScrollToTop />
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Landing />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-        <Footer />
+      <ScrollToTop />
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/projects" element={<Projects />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+      {showFooter ? <Footer /> : null}
 
-        {/* Toast notification */}
+      <div
+        className={`fixed bottom-[4.75rem] left-5 right-5 z-50 mx-auto max-w-sm transition-all duration-300 ease-out sm:left-auto sm:right-6 sm:mx-0 sm:max-w-[20rem] sm:bottom-[5.25rem] ${
+          showToast
+            ? "translate-y-0 opacity-100"
+            : "pointer-events-none translate-y-3 opacity-0"
+        }`}
+      >
         <div
-          className={`fixed bottom-4 right-4 z-50 max-w-xs transition-all duration-300 transform ${
-            showToast
-              ? "translate-y-0 opacity-100"
-              : "translate-y-10 opacity-0 pointer-events-none"
-          }`}
+          className="relative isolate overflow-hidden rounded-2xl border border-slate-200 bg-white p-4 pr-10 text-slate-900 shadow-[0_12px_40px_-16px_rgba(15,23,42,0.2)] backdrop-blur-md dark:border-white/10 dark:!bg-[#070A10] dark:text-slate-100 dark:shadow-[0_16px_48px_-20px_rgba(0,0,0,0.65)]"
+          id="toast-alert"
+          role="status"
         >
           <div
-            className="bg-gray-800/90 backdrop-blur-md border border-indigo-500/20 rounded-lg shadow-lg p-4 text-white"
-            id="toast-alert"
+            className="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-sky-500/[0.12] dark:bg-sky-400/15"
+            aria-hidden
+          />
+          <p className="font-mono text-[0.65rem] font-medium tracking-wide text-sky-600 dark:text-sky-400">
+            /status
+          </p>
+          <h3 className="mt-1 text-sm font-semibold tracking-tight text-slate-900 dark:text-slate-50">
+            In progress
+          </h3>
+          <p className="mt-2 text-xs leading-relaxed text-slate-600 dark:text-slate-300">
+            Working on{" "}
+            <span className="font-medium text-slate-800 dark:text-slate-100">
+              WeTogether
+            </span>
+            ,{" "}
+            <a
+              href="https://shopcrescent.uk"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-slate-800 underline decoration-slate-300 underline-offset-2 transition hover:text-sky-700 dark:text-slate-100 dark:decoration-white/30 dark:hover:text-sky-300"
+            >
+              Crescent
+            </a>
+            ,{" "}
+            <Link
+              to="/projects"
+              className="font-medium text-slate-800 underline decoration-slate-300 underline-offset-2 transition hover:text-sky-700 dark:text-slate-100 dark:decoration-white/30 dark:hover:text-sky-300"
+            >
+              SheetGen
+            </Link>
+            , and{" "}
+            <span className="font-medium text-slate-800 dark:text-slate-100">
+              AI assistance
+            </span>
+            .
+          </p>
+          <button
+            type="button"
+            className="absolute right-2.5 top-2.5 flex h-8 w-8 items-center justify-center rounded-lg text-slate-500 transition hover:bg-slate-100 hover:text-slate-800 dark:text-slate-400 dark:hover:bg-white/10 dark:hover:text-slate-50"
+            onClick={() => setShowToast(false)}
+            aria-label="Dismiss status"
           >
-            <div className="flex">
-              <div className="flex-shrink-0 text-indigo-400">
-                <svg
-                  className="w-5 h-5"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
-                </svg>
-              </div>
-              <div className="ml-3 pr-6">
-                <h3 className="text-sm font-medium mb-1">What's New</h3>
-                <p className="text-xs text-gray-300 mb-2">
-                  Currently working on WeTogether - Real-time Group Navigation App, and crescent launch. Check out
-                  our new upcoming{" "}
-                  <a
-                    href="https://shopcrescent.uk/password"
-                    className="font-semibold text-indigo-400 underline hover:text-indigo-200 transition-colors"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    clothing launch
-                  </a>
-                  .
-                </p>
-              </div>
-              <button
-                type="button"
-                className="absolute top-2 right-2 text-gray-400 hover:text-white transition-colors"
-                onClick={() => setShowToast(false)}
-                aria-label="Close"
-              >
-                <svg
-                  className="w-3 h-3"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 14 14"
-                >
-                  <path
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
-                  />
-                </svg>
-              </button>
-            </div>
-          </div>
+            <svg
+              className="h-4 w-4"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 14 14"
+            >
+              <path
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+              />
+            </svg>
+          </button>
         </div>
+      </div>
 
-        {/* Scroll to top button */}
-        <button
-          onClick={scrollToTop}
-          className={`fixed right-6 bottom-6 z-40 w-12 h-12 rounded-full bg-white dark:bg-gray-800 text-gray-900 dark:text-white shadow-lg border border-gray-200 dark:border-gray-700 flex items-center justify-center transform transition-all duration-300 hover:scale-105 hover:shadow-xl ${
-            showScrollTop
-              ? "translate-y-0 opacity-100"
-              : "translate-y-10 opacity-0 pointer-events-none"
-          }`}
-          aria-label="Scroll to top"
+      <button
+        type="button"
+        onClick={scrollToTop}
+        className={`fixed bottom-5 right-5 z-40 flex h-11 w-11 items-center justify-center rounded-full border border-slate-200/90 bg-white text-slate-700 shadow-[0_8px_28px_-12px_rgba(15,23,42,0.2)] transition-all duration-300 ease-out hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-lg dark:border-white/10 dark:bg-[#070A10] dark:text-slate-100 dark:shadow-[0_12px_36px_-16px_rgba(0,0,0,0.55)] dark:hover:border-white/20 dark:hover:bg-[#0a1018] sm:right-6 sm:bottom-6 ${
+          showScrollTop
+            ? "translate-y-0 opacity-100"
+            : "pointer-events-none translate-y-4 opacity-0"
+        }`}
+        aria-label="Scroll to top"
+      >
+        <svg
+          className="h-5 w-5"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth={2}
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          <svg
-            className="w-5 h-5"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M5 10l7-7m0 0l7 7m-7-7v18"
-            ></path>
-          </svg>
-        </button>
-      </Router>
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M12 19V5m0 0l-6 6m6-6 6 6"
+          />
+        </svg>
+      </button>
     </>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <AppLayout />
+    </Router>
   );
 }
 
